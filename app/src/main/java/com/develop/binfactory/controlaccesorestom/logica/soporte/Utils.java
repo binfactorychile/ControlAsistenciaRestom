@@ -282,4 +282,12 @@ public class Utils {
 		return df.format(c.getTime());
 
 	}
+
+	public static String getfechaHoraActualAlRevez() {
+
+		Calendar c = Calendar.getInstance();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return df.format(c.getTime());
+
+	}
 }

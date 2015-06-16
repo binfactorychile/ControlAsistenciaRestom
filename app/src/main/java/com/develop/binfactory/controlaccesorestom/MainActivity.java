@@ -2,6 +2,7 @@ package com.develop.binfactory.controlaccesorestom;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -24,11 +25,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
 
 import com.develop.binfactory.controlaccesorestom.clases.Asistencia_trabajador;
 import com.develop.binfactory.controlaccesorestom.clases.Trabajador;
 import com.develop.binfactory.controlaccesorestom.controladores.CtrlAsistencia_trabajador;
 import com.develop.binfactory.controlaccesorestom.controladores.CtrlTrabajador;
+import com.develop.binfactory.controlaccesorestom.logica.soporte.ManagerProviderBD;
+import com.develop.binfactory.controlaccesorestom.logica.soporte.Utils;
 
 import junit.framework.Test;
 
@@ -367,29 +371,67 @@ public class MainActivity extends ActionBarActivity
                 @Override
                 public void onClick(View v) {
                     boolean validation = validarRut(edt_rut.getText().toString());
-                    ArrayList<Trabajador> arrTrabajador = CtrlTrabajador.getListado("select * from trabajador where rut like '" + edt_rut.getText().toString()+"'", v.getContext());
-                    if(validation && (arrTrabajador.size()>0)){
-                        edt_rut.setText("");
-                        Toast.makeText(getActivity(), "trabajador: " + arrTrabajador.get(0).fnombre.toString() + " checkeado", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
+                    ArrayList<Trabajador> arrTrabajador = CtrlTrabajador.getListado("select * from trabajador where rut like '" + edt_rut.getText().toString() + "'", v.getContext());
+                    if (validation && (arrTrabajador.size() > 0)) {
+                        Trabajador objTrabajador = arrTrabajador.get(0);
+                        boolean isChecked = isCheckedToday(objTrabajador.getID(), v);
+                        if (isChecked) {
+                            edt_rut.setText("");
+                            Toast.makeText(getActivity(), "Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " ya se ha checkeado", Toast.LENGTH_SHORT).show();
+                        } else {
+                            registrarTrabajador(objTrabajador,v);
+                            edt_rut.setText("");
+                            Toast.makeText(getActivity(), "Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " checkeado", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
                         Toast.makeText(getActivity(), "Rut ingresado no existe", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
+
+            btn_delete.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    // TODO Auto-generated method stub
+                    edt_rut.setText("");
+                    return true;
+                }
+            });
+        }
+
+        private void registrarTrabajador(Trabajador objTrabajador, View v){
+            Asistencia_trabajador objAsistenciaTrabajador = new Asistencia_trabajador();
+            objAsistenciaTrabajador.fcliente_proveedor_ID = objTrabajador.fcliente_proveedor_ID;
+            objAsistenciaTrabajador.ftrabajador_ID = objTrabajador.fID;
+            objAsistenciaTrabajador.ffecha = Utils.getfechaHoraActualAlRevez();
+            objAsistenciaTrabajador.ingresar(v.getContext());
         }
 
         private boolean isCheckedToday(int trabajador_ID, View v)
         {
+            ManagerProviderBD bd=new ManagerProviderBD(v.getContext());
+            bd.open();
             boolean checked = false;
-            ArrayList<Asistencia_trabajador> arrAsistencia = CtrlAsistencia_trabajador.getListado("select * from asistencia_trabajador where trabajador_ID = " + trabajador_ID, v.getContext());
-            if(arrAsistencia.size()>0)
+            String fecha_actual = Utils.getfechaHoraActualAlRevez();
+            String query= "SELECT cast((strftime('%s','" + fecha_actual + "') - strftime('%s',fecha)) AS REAL)/60/60 AS diferencia_horas FROM asistencia_trabajador WHERE trabajador_ID = " + trabajador_ID;
+            Cursor cursor=bd.ejecutaConRetorno(query);
+            cursor.moveToFirst();
+
+            while(cursor.isAfterLast()==false)
             {
-
-
+                double diferencia_horas = Double.parseDouble(cursor.getString(cursor.getColumnIndex("diferencia_horas")));
+                Log.d("test", "Diferencia en horas: "+ diferencia_horas);
+                if(diferencia_horas <= 3){
+                    checked = true;
+                }
+                cursor.moveToNext();
             }
+            bd.close();
+
             return checked;
         }
+
+
         private boolean validarRut(String rut) {
 
             boolean validation = false;
