@@ -13,6 +13,8 @@
         android:layout_alignParentTop="true"
         android:hint="Ingrese su rut"
         android:textColorHint="@color/dim_foreground_disabled_material_dark"
+        android:focusable="false"
+        android:singleLine="true"
         android:padding="50dp"
         android:textSize="50dp"
         android:textColor="@color/switch_thumb_normal_material_light"/>

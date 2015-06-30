@@ -36,6 +36,14 @@ public class CtrlTrabajador {
         }
     }
 
+    public static boolean existeTrabajador(String rut, Context context){
+        boolean existe = false;
+        Trabajador trabajador = getTrabajadorPorRut(rut, context);
+        if(trabajador.fID > 0)
+            existe = true;
+        return existe;
+    }
+
     public static ArrayList<TrabajadorJSON> getListadoJSON(String query, Context context) {
         try {
             ManagerProviderBD bd = new ManagerProviderBD(context);
@@ -75,6 +83,27 @@ public class CtrlTrabajador {
 
         } catch (Exception ex) {
             Utils.escribeLog(ex, "CtrlTrabajador.getTrabajador");
+            return null;
+        }
+    }
+
+    public static Trabajador getTrabajadorPorRut(String rut, Context context) {
+        try {
+            String query = "SELECT ID as _id" +
+                    ",nombre" +
+                    ",rut" +
+                    ",cliente_proveedor_ID" +
+                    " FROM Trabajador WHERE rut LIKE '" + rut+ "'";
+            ManagerProviderBD bd = new ManagerProviderBD(context);
+            bd.open();
+            Cursor cursor = FachadaTrabajador.getListado(query, bd);
+            cursor.moveToFirst();
+            Trabajador objeto = new Trabajador(cursor);
+            bd.close();
+            return objeto;
+
+        } catch (Exception ex) {
+            Utils.escribeLog(ex, "CtrlTrabajador.getTrabajadorPorRut");
             return null;
         }
     }

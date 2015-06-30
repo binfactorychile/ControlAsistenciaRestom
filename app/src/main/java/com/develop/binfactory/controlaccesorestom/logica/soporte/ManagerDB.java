@@ -34,6 +34,13 @@ public class ManagerDB extends SQLiteOpenHelper {
 			",cliente_proveedor_ID INTEGER" +
 
 			");";
+	private static final String DB_CREATE_SINCRONIZACION_ASISTENCIA = "CREATE TABLE sincronizacion_asistencia (ID INTEGER PRIMARY KEY AUTOINCREMENT, registro_ID INTEGER NOT NULL);";
+	/*private static final String DB_CREATE_SINCRONIZACION_ASISTENCIA = "CREATE TABLE \"sincronizacion_asistencia\" (" +
+			"\"ID\" INTEGER AUTOINCREMENT," +
+			"\"registro_ID\" INTEGER NOT NULL," +
+			"PRIMARY KEY (\"ID\") ," +
+			"CONSTRAINT \"fk_asistencia_trabajador\" FOREIGN KEY (\"registro_ID\") REFERENCES \"asistencia_trabajador\" (\"ID\")" +
+			");";*/
 
 	
 	static final String NOMBRE_ALL_DB = "nombre";
@@ -48,6 +55,7 @@ public class ManagerDB extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase sqliteDBinstancia) {
 		sqliteDBinstancia.execSQL(DB_CREATE_TRABAJADOR);
         sqliteDBinstancia.execSQL(DB_CREATE_ASISTENCIA_TRABAJADOR);
+		sqliteDBinstancia.execSQL(DB_CREATE_SINCRONIZACION_ASISTENCIA);
 	}
 
 	// CREACION DE INSTANCIA PARA ABRIR BASE DE BASE DE DATOS

@@ -1,8 +1,10 @@
 package com.develop.binfactory.controlaccesorestom;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -28,6 +30,7 @@ import android.widget.Toast;
 import android.util.Log;
 
 import com.develop.binfactory.controlaccesorestom.clases.Asistencia_trabajador;
+import com.develop.binfactory.controlaccesorestom.clases.Sincronizador;
 import com.develop.binfactory.controlaccesorestom.clases.Trabajador;
 import com.develop.binfactory.controlaccesorestom.controladores.CtrlAsistencia_trabajador;
 import com.develop.binfactory.controlaccesorestom.controladores.CtrlTrabajador;
@@ -45,7 +48,9 @@ public class MainActivity extends ActionBarActivity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
+    private ProgressDialog dialog;
+    String resultado_sincro;//
+    String mensaje_respuesta_sincro;
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
@@ -65,26 +70,12 @@ public class MainActivity extends ActionBarActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if(!prefs.getBoolean("firstTime", false)) {
+        dialog = new ProgressDialog(this);//
+        dialog.setMessage("Sincronizando datos. Por favor espere...");
+        dialog.setTitle("Sincronizando");
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setCancelable(false);
 
-            Trabajador trabajador = new Trabajador();
-            trabajador.fnombre = "Juan Perez";
-            trabajador.frut = "19982580-1";
-            CtrlTrabajador.ingresar(trabajador, this);
-
-            trabajador.fnombre = "Pedro Picapiedra";
-            trabajador.frut = "16973029-6";
-            CtrlTrabajador.ingresar(trabajador, this);
-
-            trabajador.fnombre = "Arnold Shuaseneguer";
-            trabajador.frut = "7909826-4";
-            CtrlTrabajador.ingresar(trabajador,this);
-
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("firstTime", true);
-            editor.commit();
-        }
 
 
     }
@@ -93,15 +84,20 @@ public class MainActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
+        SincronizadorNormal sincronormal = new SincronizadorNormal();
         if (position == 0) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                    .commit();
-
-        } else {
             fragmentManager.beginTransaction()
                     .replace(R.id.container, TestFragment.newInstance(position + 1))
                     .commit();
+
+        } else if(position == 1) {
+            sincronormal.origen = Integer.toString(position);
+            sincronormal.execute("HOLI", "JKJK");
+
+        }
+        else if(position == 2){
+            sincronormal.origen = Integer.toString(position);
+            sincronormal.execute("HOLI", "JKJK");
         }
 
     }
@@ -109,14 +105,13 @@ public class MainActivity extends ActionBarActivity
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                mTitle = "Resgistro Asistencia";
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+                mTitle = "Sincronizar Trabajadores";
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
-                mTitle = "asdads";
+                mTitle = "Sincronizar Asistencias";
                 break;
         }
     }
@@ -156,6 +151,103 @@ public class MainActivity extends ActionBarActivity
 
         return super.onOptionsItemSelected(item);
     }
+
+    ////////sincronizacion de los trabajadores y sus asistencias::::+
+    public void enviarAsistencias()
+    {
+
+    }
+
+    private class SincronizadorNormal extends AsyncTask<String, Float, Integer> {
+        public String origen="";
+        protected void onPreExecute() {
+            dialog.setProgress(0);
+            dialog.setMax(100);
+            dialog.show(); // Mostramos el di�logo antes de comenzar
+        }
+
+        protected Integer doInBackground(String[] arrString) {
+
+            Sincronizador sincro = new Sincronizador(MainActivity.this,
+                    "1");// ((VariablesSesion)getApplication()).acces_usuario_ID);
+            if (!sincro.mac_address.equalsIgnoreCase("no")) {
+                if (sincro.existeConectividad(MainActivity.this)) {
+                    resultado_sincro = "correcto";
+                    if(origen.equals("1"))
+                    {
+                        mensaje_respuesta_sincro = sincro
+                                .enviarAsistenciasTrabajador();
+                        if (mensaje_respuesta_sincro.equals("ok")) {
+
+                            dialog.dismiss();
+                        } else {
+                            resultado_sincro = "error_envio";
+
+                        }
+                    }
+                    else if(origen.equals("2"))
+                    {
+                        mensaje_respuesta_sincro = sincro.traerDatosServidorPrincipal();
+                        if (mensaje_respuesta_sincro.equals("ok")) {
+
+                            dialog.dismiss();
+                        } else {
+                            resultado_sincro = "error_envio";
+
+                        }
+                    }
+
+
+                } else {
+                    dialog.dismiss();
+                    resultado_sincro = "error_conexion";
+                    // Toast.makeText(getApplicationContext(),"No existe conectividad",
+                    // Toast.LENGTH_SHORT).show();
+
+                }
+            } else {
+                resultado_sincro = "error_no_conectada";
+            }
+            return 1;
+        }
+
+        protected void onProgressUpdate(Float[] valores) {
+            int p = Math.round(100 * valores[0]);
+            dialog.setProgress(p);
+        }
+
+        protected void onPostExecute(Integer bytes) {
+
+            dialog.dismiss();
+
+            if (resultado_sincro.equals("error_conexion")) {
+                Utils.muestraMensaje(
+                        "Error al sincronizar, no se pudo conectar con el servidor. Por favor intente mas tarde",
+                        MainActivity.this);
+            } else if (resultado_sincro.equals("error_envio")) {
+                Utils.muestraMensaje(mensaje_respuesta_sincro,
+                        MainActivity.this);
+            } else if (resultado_sincro.equals("error")) {
+                Utils.muestraMensaje(
+                        "Error al sincronizar, no se pudo conectar con el servidor. Por favor intente mas tarde",
+                        MainActivity.this);
+            } else if (resultado_sincro.equals("ok_admin")) {
+                Utils.muestraMensaje(
+                        "Ahora debe ingresar con un vendedor y sincronizar",
+                        MainActivity.this);
+            } else if (resultado_sincro.equals("error_no_conectada")) {
+                Utils.muestraMensaje(
+                        "La tablet no se encuentra conectada a la misma red WIFI",
+                        MainActivity.this);
+            }
+
+        }
+
+        private void sincronizarDatos(View v) {
+
+        }
+    }
+
 
     /**
      * A placeholder fragment containing a simple view.
@@ -347,7 +439,9 @@ public class MainActivity extends ActionBarActivity
 
                 @Override
                 public void onClick(View v) {
-                    edt_rut.setText(edt_rut.getText() + "-");
+                    String texto = edt_rut.getText().toString();
+                    if(texto.length() >= 7)
+                        edt_rut.setText(edt_rut.getText() + "-");
                 }
             });
 
@@ -413,7 +507,7 @@ public class MainActivity extends ActionBarActivity
             bd.open();
             boolean checked = false;
             String fecha_actual = Utils.getfechaHoraActualAlRevez();
-            String query= "SELECT cast((strftime('%s','" + fecha_actual + "') - strftime('%s',fecha)) AS REAL)/60/60 AS diferencia_horas FROM asistencia_trabajador WHERE trabajador_ID = " + trabajador_ID;
+            String query= "SELECT cast((strftime('%s','" + fecha_actual + "') - strftime('%s',fecha)) AS REAL)/60/60 AS diferencia_horas FROM asistencia_trabajador WHERE diferencia_horas <= 3 and trabajador_ID = " + trabajador_ID;
             Cursor cursor=bd.ejecutaConRetorno(query);
             cursor.moveToFirst();
 
@@ -456,6 +550,10 @@ public class MainActivity extends ActionBarActivity
             }
             return validation;
         }
+
+
+
+
 
         @Override
         public void onAttach(Activity activity) {

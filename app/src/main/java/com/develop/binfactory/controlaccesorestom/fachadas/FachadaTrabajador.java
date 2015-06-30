@@ -8,7 +8,7 @@ import android.database.Cursor;
 
 public class FachadaTrabajador {
 
-public static Cursor getListado(String query, ManagerProviderBD bd)
+	public static Cursor getListado(String query, ManagerProviderBD bd)
 	{
 		try
 	{
