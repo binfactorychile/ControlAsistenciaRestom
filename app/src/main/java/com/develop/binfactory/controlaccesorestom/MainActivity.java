@@ -77,7 +77,6 @@ public class MainActivity extends ActionBarActivity
         dialog.setCancelable(false);
 
 
-
     }
 
     @Override
@@ -90,12 +89,11 @@ public class MainActivity extends ActionBarActivity
                     .replace(R.id.container, TestFragment.newInstance(position + 1))
                     .commit();
 
-        } else if(position == 1) {
+        } else if (position == 1) {
             sincronormal.origen = Integer.toString(position);
             sincronormal.execute("HOLI", "JKJK");
 
-        }
-        else if(position == 2){
+        } else if (position == 2) {
             sincronormal.origen = Integer.toString(position);
             sincronormal.execute("HOLI", "JKJK");
         }
@@ -153,13 +151,13 @@ public class MainActivity extends ActionBarActivity
     }
 
     ////////sincronizacion de los trabajadores y sus asistencias::::+
-    public void enviarAsistencias()
-    {
+    public void enviarAsistencias() {
 
     }
 
     private class SincronizadorNormal extends AsyncTask<String, Float, Integer> {
-        public String origen="";
+        public String origen = "";
+
         protected void onPreExecute() {
             dialog.setProgress(0);
             dialog.setMax(100);
@@ -173,8 +171,7 @@ public class MainActivity extends ActionBarActivity
             if (!sincro.mac_address.equalsIgnoreCase("no")) {
                 if (sincro.existeConectividad(MainActivity.this)) {
                     resultado_sincro = "correcto";
-                    if(origen.equals("1"))
-                    {
+                    if (origen.equals("1")) {
                         mensaje_respuesta_sincro = sincro
                                 .enviarAsistenciasTrabajador();
                         if (mensaje_respuesta_sincro.equals("ok")) {
@@ -184,9 +181,7 @@ public class MainActivity extends ActionBarActivity
                             resultado_sincro = "error_envio";
 
                         }
-                    }
-                    else if(origen.equals("2"))
-                    {
+                    } else if (origen.equals("2")) {
                         mensaje_respuesta_sincro = sincro.traerDatosServidorPrincipal();
                         if (mensaje_respuesta_sincro.equals("ok")) {
 
@@ -440,7 +435,7 @@ public class MainActivity extends ActionBarActivity
                 @Override
                 public void onClick(View v) {
                     String texto = edt_rut.getText().toString();
-                    if(texto.length() >= 7)
+                    if (texto.length() >= 7)
                         edt_rut.setText(edt_rut.getText() + "-");
                 }
             });
@@ -473,7 +468,12 @@ public class MainActivity extends ActionBarActivity
                             edt_rut.setText("");
                             Toast.makeText(getActivity(), "Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " ya se ha checkeado", Toast.LENGTH_SHORT).show();
                         } else {
-                            registrarTrabajador(objTrabajador,v);
+                            int resultado = registrarTrabajador(objTrabajador, v);
+                            if (resultado > 0) {
+
+                                boolean resultado2 = registrarSincronizacionAsistencia(objTrabajador.fID, v);
+                            }
+
                             edt_rut.setText("");
                             Toast.makeText(getActivity(), "Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " checkeado", Toast.LENGTH_SHORT).show();
                         }
@@ -493,29 +493,44 @@ public class MainActivity extends ActionBarActivity
             });
         }
 
-        private void registrarTrabajador(Trabajador objTrabajador, View v){
+        private int registrarTrabajador(Trabajador objTrabajador, View v) {
+            int resultado = 1;
             Asistencia_trabajador objAsistenciaTrabajador = new Asistencia_trabajador();
             objAsistenciaTrabajador.fcliente_proveedor_ID = objTrabajador.fcliente_proveedor_ID;
             objAsistenciaTrabajador.ftrabajador_ID = objTrabajador.fID;
             objAsistenciaTrabajador.ffecha = Utils.getfechaHoraActualAlRevez();
-            objAsistenciaTrabajador.ingresar(v.getContext());
+            resultado = objAsistenciaTrabajador.ingresar(v.getContext());
+            return resultado;
         }
 
-        private boolean isCheckedToday(int trabajador_ID, View v)
-        {
-            ManagerProviderBD bd=new ManagerProviderBD(v.getContext());
+        private boolean registrarSincronizacionAsistencia(int trabajador_ID, View v) {
+
+            try {
+                ManagerProviderBD bd = new ManagerProviderBD(v.getContext());
+                String query = "insert into sincronizacion_asistencia (registro_ID) values('" + trabajador_ID + "')";
+                bd.open();
+                bd.ejecutaSinRetorno(query);
+                bd.close();
+            } catch (Exception ex) {
+                Utils.escribeLog(ex, "MainActivity.registrarSincronizacionAsistencia");
+                return false;
+            }
+            return true;
+        }
+
+        private boolean isCheckedToday(int trabajador_ID, View v) {
+            ManagerProviderBD bd = new ManagerProviderBD(v.getContext());
             bd.open();
             boolean checked = false;
             String fecha_actual = Utils.getfechaHoraActualAlRevez();
-            String query= "SELECT cast((strftime('%s','" + fecha_actual + "') - strftime('%s',fecha)) AS REAL)/60/60 AS diferencia_horas FROM asistencia_trabajador WHERE diferencia_horas <= 3 and trabajador_ID = " + trabajador_ID;
-            Cursor cursor=bd.ejecutaConRetorno(query);
+            String query = "SELECT cast((strftime('%s','" + fecha_actual + "') - strftime('%s',fecha)) AS REAL)/60/60 AS diferencia_horas FROM asistencia_trabajador WHERE diferencia_horas <= 3 and trabajador_ID = " + trabajador_ID;
+            Cursor cursor = bd.ejecutaConRetorno(query);
             cursor.moveToFirst();
 
-            while(cursor.isAfterLast()==false)
-            {
+            while (cursor.isAfterLast() == false) {
                 double diferencia_horas = Double.parseDouble(cursor.getString(cursor.getColumnIndex("diferencia_horas")));
-                Log.d("test", "Diferencia en horas: "+ diferencia_horas);
-                if(diferencia_horas <= 3){
+                Log.d("test", "Diferencia en horas: " + diferencia_horas);
+                if (diferencia_horas <= 3) {
                     checked = true;
                 }
                 cursor.moveToNext();
@@ -550,9 +565,6 @@ public class MainActivity extends ActionBarActivity
             }
             return validation;
         }
-
-
-
 
 
         @Override

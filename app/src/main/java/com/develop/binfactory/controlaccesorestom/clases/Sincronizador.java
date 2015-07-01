@@ -101,15 +101,20 @@ public class Sincronizador {
                 Utils.escribeLog("Error en registrarAsistenciasTrabajador, tablet->"
                         + mac_address);
             } else {
+                try{
                 //el resultado es ok, se procede a eliminar los registros de sincronizacion_trabajador
                 ManagerProviderBD bd = new ManagerProviderBD(context);
                 bd.open();
                 for (int i = 0; i < arrSincroIDs.size(); i++) {
                     int ID = (int) arrSincroIDs.get(i);
-                    String query = "DELETE FROM sincronizacion_trabajador WHERE ID=" + ID;
+                    String query = "DELETE FROM sincronizacion_asistencia WHERE ID=" + ID;
                     bd.ejecutaSinRetorno(query);
                 }
                 bd.close();
+                } catch (Exception ex) {
+                    Utils.escribeLog(ex, "Sincronizador.enviarAsistenciasTrabajador");
+
+                }
             }
         }
         return resultado;
@@ -146,8 +151,8 @@ public class Sincronizador {
             //obtener los id
             String query = "SELECT at.* " +
                     "from asistencia_trabajador AS at, sincronizacion_asistencia AS sa" +
-                    "WHERE at.ID = sa.registro_ID";
-            ArrayList<Asistencia_trabajador> arrAsistenciaTrabajador = CtrlAsistencia_trabajador.getListado(query, context);
+                    " WHERE at.ID = sa.registro_ID";
+            ArrayList<Asistencia_trabajadorJSON> arrAsistenciaTrabajador = CtrlAsistencia_trabajador.getListadoJSON(query, context);
             gson = new Gson();
             String arrSincroAsistenciaJSON = gson.toJson(arrAsistenciaTrabajador);
             PropertyInfo pi2 = new PropertyInfo();

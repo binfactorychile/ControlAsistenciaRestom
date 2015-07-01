@@ -11,18 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68bb9862-fd37-4a23-8926-29d83a74ab3d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_21_0_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_21_0_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_21_0_3.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/controladores/CtrlTrabajador.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/controladores/CtrlTrabajador.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/fachadas/FachadaTrabajador.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/fachadas/FachadaTrabajador.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Asistencia_trabajador.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Asistencia_trabajador.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/controladores/CtrlAsistencia_trabajador.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/controladores/CtrlAsistencia_trabajador.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/fachadas/FachadaAsistencia_trabajador.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/fachadas/FachadaAsistencia_trabajador.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/logica/soporte/ManagerDB.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/logica/soporte/ManagerDB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Trabajador.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Trabajador.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_test.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_test.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Sincronizador.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Sincronizador.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ControlAsistenciaRestom.iws" />
@@ -167,49 +160,73 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="210" column="0" selection-start-line="210" selection-start-column="0" selection-end-line="210" selection-end-column="0" />
+              <caret line="205" column="0" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
               <folding>
-                <element signature="e#12957#13154#0" expanded="true" />
-                <element signature="e#13153#13154#0" expanded="true" />
-                <element signature="e#13196#13393#0" expanded="true" />
-                <element signature="e#13392#13393#0" expanded="true" />
-                <element signature="e#13436#13633#0" expanded="true" />
-                <element signature="e#13632#13633#0" expanded="true" />
-                <element signature="e#13677#13874#0" expanded="true" />
-                <element signature="e#13873#13874#0" expanded="true" />
-                <element signature="e#13920#14117#0" expanded="true" />
-                <element signature="e#14116#14117#0" expanded="true" />
-                <element signature="e#14162#14359#0" expanded="true" />
-                <element signature="e#14358#14359#0" expanded="true" />
-                <element signature="e#14403#14600#0" expanded="true" />
-                <element signature="e#14599#14600#0" expanded="true" />
-                <element signature="e#14645#14842#0" expanded="true" />
-                <element signature="e#14841#14842#0" expanded="true" />
-                <element signature="e#14886#15083#0" expanded="true" />
-                <element signature="e#15082#15083#0" expanded="true" />
-                <element signature="e#15128#15325#0" expanded="true" />
-                <element signature="e#15324#15325#0" expanded="true" />
-                <element signature="e#15365#15562#0" expanded="true" />
-                <element signature="e#15561#15562#0" expanded="true" />
-                <element signature="e#15607#15917#0" expanded="true" />
-                <element signature="e#15916#15917#0" expanded="true" />
-                <element signature="e#15963#16465#0" expanded="true" />
-                <element signature="e#16464#16465#0" expanded="true" />
-                <element signature="e#16507#17886#0" expanded="true" />
-                <element signature="e#17885#17886#0" expanded="true" />
-                <element signature="e#17936#18208#0" expanded="true" />
-                <element signature="e#18207#18208#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#12892#13089#0" expanded="true" />
+                <element signature="e#13088#13089#0" expanded="true" />
+                <element signature="e#13131#13328#0" expanded="true" />
+                <element signature="e#13327#13328#0" expanded="true" />
+                <element signature="e#13371#13568#0" expanded="true" />
+                <element signature="e#13567#13568#0" expanded="true" />
+                <element signature="e#13612#13809#0" expanded="true" />
+                <element signature="e#13808#13809#0" expanded="true" />
+                <element signature="e#13855#14052#0" expanded="true" />
+                <element signature="e#14051#14052#0" expanded="true" />
+                <element signature="e#14097#14294#0" expanded="true" />
+                <element signature="e#14293#14294#0" expanded="true" />
+                <element signature="e#14338#14535#0" expanded="true" />
+                <element signature="e#14534#14535#0" expanded="true" />
+                <element signature="e#14580#14777#0" expanded="true" />
+                <element signature="e#14776#14777#0" expanded="true" />
+                <element signature="e#14821#15018#0" expanded="true" />
+                <element signature="e#15017#15018#0" expanded="true" />
+                <element signature="e#15063#15260#0" expanded="true" />
+                <element signature="e#15259#15260#0" expanded="true" />
+                <element signature="e#15300#15497#0" expanded="true" />
+                <element signature="e#15496#15497#0" expanded="true" />
+                <element signature="e#15542#15853#0" expanded="true" />
+                <element signature="e#15852#15853#0" expanded="true" />
+                <element signature="e#15899#16401#0" expanded="true" />
+                <element signature="e#16400#16401#0" expanded="true" />
+                <element signature="e#16443#18030#0" expanded="true" />
+                <element signature="e#18029#18030#0" expanded="true" />
+                <element signature="e#18080#18352#0" expanded="true" />
+                <element signature="e#18351#18352#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AsyncTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/android/os/AsyncTask.java">
+      <file leaf-file-name="ManagerDB.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/logica/soporte/ManagerDB.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="209" column="0" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
+              <caret line="57" column="53" selection-start-line="57" selection-start-column="53" selection-end-line="57" selection-end-column="53" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Asistencia_trabajador.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Asistencia_trabajador.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CtrlAsistencia_trabajador.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/controladores/CtrlAsistencia_trabajador.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+              <folding>
+                <element signature="e#1106#1129#0" expanded="true" />
+                <element signature="e#2078#2105#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -217,11 +234,31 @@
       <file leaf-file-name="Sincronizador.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Sincronizador.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.5454545">
-              <caret line="179" column="0" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.32890856">
+              <caret line="159" column="36" selection-start-line="159" selection-start-column="36" selection-end-line="159" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Asistencia_trabajadorJSON.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Asistencia_trabajadorJSON.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RuntimeInit.java" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/com/android/internal/os/RuntimeInit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1681,7 +1718,10 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/fachadas/FachadaTrabajador.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/logica/soporte/ManagerDB.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/fachadas/FachadaAsistencia_trabajador.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Asistencia_trabajador.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/controladores/CtrlAsistencia_trabajador.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Sincronizador.java" />
       </list>
     </option>
@@ -1711,7 +1751,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -1722,7 +1762,150 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ControlAsistenciaRestom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ControlAsistenciaRestom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ControlAsistenciaRestom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ControlAsistenciaRestom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ControlAsistenciaRestom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ControlAsistenciaRestom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ControlAsistenciaRestom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ControlAsistenciaRestom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ControlAsistenciaRestom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controlaccesorestom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ControlAsistenciaRestom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ControlAsistenciaRestom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controlaccesorestom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clases" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ControlAsistenciaRestom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ControlAsistenciaRestom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -1732,7 +1915,7 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="c16075f6c624a5f" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_22_x86" />
-    <property name="SearchEverywhereHistoryKey" value="mana&#9;FILE&#9;file:///Users/cristofer/GitHub/ControlAsistenciaRestom/app/src/main/java/com/develop/binfactory/controlaccesorestom/logica/soporte/ManagerDB.java&#10;main&#9;FILE&#9;file:///Users/cristofer/GitHub/ControlAsistenciaRestom/app/src/main/java/com/develop/binfactory/controlaccesorestom/MainActivity.java&#10;sin&#9;FILE&#9;file:///Users/cristofer/GitHub/ControlAsistenciaRestom/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Sincronizador.java&#10;manager&#9;FILE&#9;file:///Users/cristofer/GitHub/ControlAsistenciaRestom/app/src/main/java/com/develop/binfactory/controlaccesorestom/logica/soporte/ManagerDB.java&#10;managerdb&#9;FILE&#9;file:///Users/cristofer/GitHub/ControlAsistenciaRestom/app/src/main/java/com/develop/binfactory/controlaccesorestom/logica/soporte/ManagerDB.java&#10;manifes&#9;FILE&#9;file:///Users/cristofer/GitHub/ControlAsistenciaRestom/app/src/main/AndroidManifest.xml" />
+    <property name="SearchEverywhereHistoryKey" value="sincro&#9;FILE&#9;file:///Users/cristofer/GitHub/ControlAsistenciaRestom/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Sincronizador.java&#10;mana&#9;FILE&#9;file:///Users/cristofer/GitHub/ControlAsistenciaRestom/app/src/main/java/com/develop/binfactory/controlaccesorestom/logica/soporte/ManagerDB.java&#10;main&#9;FILE&#9;file:///Users/cristofer/GitHub/ControlAsistenciaRestom/app/src/main/java/com/develop/binfactory/controlaccesorestom/MainActivity.java&#10;sin&#9;FILE&#9;file:///Users/cristofer/GitHub/ControlAsistenciaRestom/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Sincronizador.java&#10;manager&#9;FILE&#9;file:///Users/cristofer/GitHub/ControlAsistenciaRestom/app/src/main/java/com/develop/binfactory/controlaccesorestom/logica/soporte/ManagerDB.java&#10;managerdb&#9;FILE&#9;file:///Users/cristofer/GitHub/ControlAsistenciaRestom/app/src/main/java/com/develop/binfactory/controlaccesorestom/logica/soporte/ManagerDB.java&#10;manifes&#9;FILE&#9;file:///Users/cristofer/GitHub/ControlAsistenciaRestom/app/src/main/AndroidManifest.xml" />
   </component>
   <component name="RunManager" selected="Android Application.app">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -1932,10 +2115,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30898023" sideWeight="0.47415185" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30878186" sideWeight="0.47415185" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5177706" order="7" side_tool="true" content_ui="tabs" />
@@ -1948,11 +2131,11 @@
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41501418" sideWeight="0.4822294" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5177706" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24878837" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24878837" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39943343" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39943343" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2006,111 +2189,21 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Sincronizador.java</url>
-          <line>206</line>
-          <properties />
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/logica/soporte/ManagerDB.java</url>
-          <line>55</line>
-          <properties />
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/logica/soporte/ManagerDB.java</url>
-          <line>62</line>
-          <properties />
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Sincronizador.java</url>
-          <line>80</line>
+          <line>109</line>
           <properties />
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Sincronizador.java</url>
-          <line>93</line>
-          <properties />
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Sincronizador.java</url>
-          <line>140</line>
-          <properties />
-          <option name="timeStamp" value="26" />
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="27" />
+      <option name="time" value="40" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
-          <folding>
-            <element signature="e#12957#13154#0" expanded="true" />
-            <element signature="e#13153#13154#0" expanded="true" />
-            <element signature="e#13196#13393#0" expanded="true" />
-            <element signature="e#13392#13393#0" expanded="true" />
-            <element signature="e#13436#13633#0" expanded="true" />
-            <element signature="e#13632#13633#0" expanded="true" />
-            <element signature="e#13677#13874#0" expanded="true" />
-            <element signature="e#13873#13874#0" expanded="true" />
-            <element signature="e#13920#14117#0" expanded="true" />
-            <element signature="e#14116#14117#0" expanded="true" />
-            <element signature="e#14162#14359#0" expanded="true" />
-            <element signature="e#14358#14359#0" expanded="true" />
-            <element signature="e#14403#14600#0" expanded="true" />
-            <element signature="e#14599#14600#0" expanded="true" />
-            <element signature="e#14645#14842#0" expanded="true" />
-            <element signature="e#14841#14842#0" expanded="true" />
-            <element signature="e#14886#15083#0" expanded="true" />
-            <element signature="e#15082#15083#0" expanded="true" />
-            <element signature="e#15128#15325#0" expanded="true" />
-            <element signature="e#15324#15325#0" expanded="true" />
-            <element signature="e#15365#15562#0" expanded="true" />
-            <element signature="e#15561#15562#0" expanded="true" />
-            <element signature="e#15607#15917#0" expanded="true" />
-            <element signature="e#15916#15917#0" expanded="true" />
-            <element signature="e#15963#16465#0" expanded="true" />
-            <element signature="e#16464#16465#0" expanded="true" />
-            <element signature="e#16507#17886#0" expanded="true" />
-            <element signature="e#17885#17886#0" expanded="true" />
-            <element signature="e#17936#18208#0" expanded="true" />
-            <element signature="e#18207#18208#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_test.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Sincronizador.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="230" column="13" selection-start-line="230" selection-start-column="13" selection-end-line="230" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/logica/soporte/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2187,36 +2280,37 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="103" column="42" selection-start-line="103" selection-start-column="42" selection-end-line="103" selection-end-column="42" />
           <folding>
-            <element signature="e#12957#13154#0" expanded="true" />
-            <element signature="e#13153#13154#0" expanded="true" />
-            <element signature="e#13196#13393#0" expanded="true" />
-            <element signature="e#13392#13393#0" expanded="true" />
-            <element signature="e#13436#13633#0" expanded="true" />
-            <element signature="e#13632#13633#0" expanded="true" />
-            <element signature="e#13677#13874#0" expanded="true" />
-            <element signature="e#13873#13874#0" expanded="true" />
-            <element signature="e#13920#14117#0" expanded="true" />
-            <element signature="e#14116#14117#0" expanded="true" />
-            <element signature="e#14162#14359#0" expanded="true" />
-            <element signature="e#14358#14359#0" expanded="true" />
-            <element signature="e#14403#14600#0" expanded="true" />
-            <element signature="e#14599#14600#0" expanded="true" />
-            <element signature="e#14645#14842#0" expanded="true" />
-            <element signature="e#14841#14842#0" expanded="true" />
-            <element signature="e#14886#15083#0" expanded="true" />
-            <element signature="e#15082#15083#0" expanded="true" />
-            <element signature="e#15128#15325#0" expanded="true" />
-            <element signature="e#15324#15325#0" expanded="true" />
-            <element signature="e#15365#15562#0" expanded="true" />
-            <element signature="e#15561#15562#0" expanded="true" />
-            <element signature="e#15607#15917#0" expanded="true" />
-            <element signature="e#15916#15917#0" expanded="true" />
-            <element signature="e#15963#16465#0" expanded="true" />
-            <element signature="e#16464#16465#0" expanded="true" />
-            <element signature="e#16507#17886#0" expanded="true" />
-            <element signature="e#17885#17886#0" expanded="true" />
-            <element signature="e#17936#18208#0" expanded="true" />
-            <element signature="e#18207#18208#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#12892#13089#0" expanded="true" />
+            <element signature="e#13088#13089#0" expanded="true" />
+            <element signature="e#13131#13328#0" expanded="true" />
+            <element signature="e#13327#13328#0" expanded="true" />
+            <element signature="e#13371#13568#0" expanded="true" />
+            <element signature="e#13567#13568#0" expanded="true" />
+            <element signature="e#13612#13809#0" expanded="true" />
+            <element signature="e#13808#13809#0" expanded="true" />
+            <element signature="e#13855#14052#0" expanded="true" />
+            <element signature="e#14051#14052#0" expanded="true" />
+            <element signature="e#14097#14294#0" expanded="true" />
+            <element signature="e#14293#14294#0" expanded="true" />
+            <element signature="e#14338#14535#0" expanded="true" />
+            <element signature="e#14534#14535#0" expanded="true" />
+            <element signature="e#14580#14777#0" expanded="true" />
+            <element signature="e#14776#14777#0" expanded="true" />
+            <element signature="e#14821#15018#0" expanded="true" />
+            <element signature="e#15017#15018#0" expanded="true" />
+            <element signature="e#15063#15260#0" expanded="true" />
+            <element signature="e#15259#15260#0" expanded="true" />
+            <element signature="e#15300#15497#0" expanded="true" />
+            <element signature="e#15496#15497#0" expanded="true" />
+            <element signature="e#15542#15853#0" expanded="true" />
+            <element signature="e#15852#15853#0" expanded="true" />
+            <element signature="e#15899#16401#0" expanded="true" />
+            <element signature="e#16400#16401#0" expanded="true" />
+            <element signature="e#16443#18030#0" expanded="true" />
+            <element signature="e#18029#18030#0" expanded="true" />
+            <element signature="e#18080#18352#0" expanded="true" />
+            <element signature="e#18351#18352#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2289,36 +2383,37 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
           <folding>
-            <element signature="e#12957#13154#0" expanded="true" />
-            <element signature="e#13153#13154#0" expanded="true" />
-            <element signature="e#13196#13393#0" expanded="true" />
-            <element signature="e#13392#13393#0" expanded="true" />
-            <element signature="e#13436#13633#0" expanded="true" />
-            <element signature="e#13632#13633#0" expanded="true" />
-            <element signature="e#13677#13874#0" expanded="true" />
-            <element signature="e#13873#13874#0" expanded="true" />
-            <element signature="e#13920#14117#0" expanded="true" />
-            <element signature="e#14116#14117#0" expanded="true" />
-            <element signature="e#14162#14359#0" expanded="true" />
-            <element signature="e#14358#14359#0" expanded="true" />
-            <element signature="e#14403#14600#0" expanded="true" />
-            <element signature="e#14599#14600#0" expanded="true" />
-            <element signature="e#14645#14842#0" expanded="true" />
-            <element signature="e#14841#14842#0" expanded="true" />
-            <element signature="e#14886#15083#0" expanded="true" />
-            <element signature="e#15082#15083#0" expanded="true" />
-            <element signature="e#15128#15325#0" expanded="true" />
-            <element signature="e#15324#15325#0" expanded="true" />
-            <element signature="e#15365#15562#0" expanded="true" />
-            <element signature="e#15561#15562#0" expanded="true" />
-            <element signature="e#15607#15917#0" expanded="true" />
-            <element signature="e#15916#15917#0" expanded="true" />
-            <element signature="e#15963#16465#0" expanded="true" />
-            <element signature="e#16464#16465#0" expanded="true" />
-            <element signature="e#16507#17886#0" expanded="true" />
-            <element signature="e#17885#17886#0" expanded="true" />
-            <element signature="e#17936#18208#0" expanded="true" />
-            <element signature="e#18207#18208#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#12892#13089#0" expanded="true" />
+            <element signature="e#13088#13089#0" expanded="true" />
+            <element signature="e#13131#13328#0" expanded="true" />
+            <element signature="e#13327#13328#0" expanded="true" />
+            <element signature="e#13371#13568#0" expanded="true" />
+            <element signature="e#13567#13568#0" expanded="true" />
+            <element signature="e#13612#13809#0" expanded="true" />
+            <element signature="e#13808#13809#0" expanded="true" />
+            <element signature="e#13855#14052#0" expanded="true" />
+            <element signature="e#14051#14052#0" expanded="true" />
+            <element signature="e#14097#14294#0" expanded="true" />
+            <element signature="e#14293#14294#0" expanded="true" />
+            <element signature="e#14338#14535#0" expanded="true" />
+            <element signature="e#14534#14535#0" expanded="true" />
+            <element signature="e#14580#14777#0" expanded="true" />
+            <element signature="e#14776#14777#0" expanded="true" />
+            <element signature="e#14821#15018#0" expanded="true" />
+            <element signature="e#15017#15018#0" expanded="true" />
+            <element signature="e#15063#15260#0" expanded="true" />
+            <element signature="e#15259#15260#0" expanded="true" />
+            <element signature="e#15300#15497#0" expanded="true" />
+            <element signature="e#15496#15497#0" expanded="true" />
+            <element signature="e#15542#15853#0" expanded="true" />
+            <element signature="e#15852#15853#0" expanded="true" />
+            <element signature="e#15899#16401#0" expanded="true" />
+            <element signature="e#16400#16401#0" expanded="true" />
+            <element signature="e#16443#18030#0" expanded="true" />
+            <element signature="e#18029#18030#0" expanded="true" />
+            <element signature="e#18080#18352#0" expanded="true" />
+            <element signature="e#18351#18352#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2360,36 +2455,37 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="425" column="17" selection-start-line="425" selection-start-column="17" selection-end-line="425" selection-end-column="17" />
           <folding>
-            <element signature="e#12957#13154#0" expanded="true" />
-            <element signature="e#13153#13154#0" expanded="true" />
-            <element signature="e#13196#13393#0" expanded="true" />
-            <element signature="e#13392#13393#0" expanded="true" />
-            <element signature="e#13436#13633#0" expanded="true" />
-            <element signature="e#13632#13633#0" expanded="true" />
-            <element signature="e#13677#13874#0" expanded="true" />
-            <element signature="e#13873#13874#0" expanded="true" />
-            <element signature="e#13920#14117#0" expanded="true" />
-            <element signature="e#14116#14117#0" expanded="true" />
-            <element signature="e#14162#14359#0" expanded="true" />
-            <element signature="e#14358#14359#0" expanded="true" />
-            <element signature="e#14403#14600#0" expanded="true" />
-            <element signature="e#14599#14600#0" expanded="true" />
-            <element signature="e#14645#14842#0" expanded="true" />
-            <element signature="e#14841#14842#0" expanded="true" />
-            <element signature="e#14886#15083#0" expanded="true" />
-            <element signature="e#15082#15083#0" expanded="true" />
-            <element signature="e#15128#15325#0" expanded="true" />
-            <element signature="e#15324#15325#0" expanded="true" />
-            <element signature="e#15365#15562#0" expanded="true" />
-            <element signature="e#15561#15562#0" expanded="true" />
-            <element signature="e#15607#15917#0" expanded="true" />
-            <element signature="e#15916#15917#0" expanded="true" />
-            <element signature="e#15963#16465#0" expanded="true" />
-            <element signature="e#16464#16465#0" expanded="true" />
-            <element signature="e#16507#17886#0" expanded="true" />
-            <element signature="e#17885#17886#0" expanded="true" />
-            <element signature="e#17936#18208#0" expanded="true" />
-            <element signature="e#18207#18208#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#12892#13089#0" expanded="true" />
+            <element signature="e#13088#13089#0" expanded="true" />
+            <element signature="e#13131#13328#0" expanded="true" />
+            <element signature="e#13327#13328#0" expanded="true" />
+            <element signature="e#13371#13568#0" expanded="true" />
+            <element signature="e#13567#13568#0" expanded="true" />
+            <element signature="e#13612#13809#0" expanded="true" />
+            <element signature="e#13808#13809#0" expanded="true" />
+            <element signature="e#13855#14052#0" expanded="true" />
+            <element signature="e#14051#14052#0" expanded="true" />
+            <element signature="e#14097#14294#0" expanded="true" />
+            <element signature="e#14293#14294#0" expanded="true" />
+            <element signature="e#14338#14535#0" expanded="true" />
+            <element signature="e#14534#14535#0" expanded="true" />
+            <element signature="e#14580#14777#0" expanded="true" />
+            <element signature="e#14776#14777#0" expanded="true" />
+            <element signature="e#14821#15018#0" expanded="true" />
+            <element signature="e#15017#15018#0" expanded="true" />
+            <element signature="e#15063#15260#0" expanded="true" />
+            <element signature="e#15259#15260#0" expanded="true" />
+            <element signature="e#15300#15497#0" expanded="true" />
+            <element signature="e#15496#15497#0" expanded="true" />
+            <element signature="e#15542#15853#0" expanded="true" />
+            <element signature="e#15852#15853#0" expanded="true" />
+            <element signature="e#15899#16401#0" expanded="true" />
+            <element signature="e#16400#16401#0" expanded="true" />
+            <element signature="e#16443#18030#0" expanded="true" />
+            <element signature="e#18029#18030#0" expanded="true" />
+            <element signature="e#18080#18352#0" expanded="true" />
+            <element signature="e#18351#18352#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2399,36 +2495,37 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="411" column="0" selection-start-line="411" selection-start-column="0" selection-end-line="411" selection-end-column="0" />
           <folding>
-            <element signature="e#12957#13154#0" expanded="true" />
-            <element signature="e#13153#13154#0" expanded="true" />
-            <element signature="e#13196#13393#0" expanded="true" />
-            <element signature="e#13392#13393#0" expanded="true" />
-            <element signature="e#13436#13633#0" expanded="true" />
-            <element signature="e#13632#13633#0" expanded="true" />
-            <element signature="e#13677#13874#0" expanded="true" />
-            <element signature="e#13873#13874#0" expanded="true" />
-            <element signature="e#13920#14117#0" expanded="true" />
-            <element signature="e#14116#14117#0" expanded="true" />
-            <element signature="e#14162#14359#0" expanded="true" />
-            <element signature="e#14358#14359#0" expanded="true" />
-            <element signature="e#14403#14600#0" expanded="true" />
-            <element signature="e#14599#14600#0" expanded="true" />
-            <element signature="e#14645#14842#0" expanded="true" />
-            <element signature="e#14841#14842#0" expanded="true" />
-            <element signature="e#14886#15083#0" expanded="true" />
-            <element signature="e#15082#15083#0" expanded="true" />
-            <element signature="e#15128#15325#0" expanded="true" />
-            <element signature="e#15324#15325#0" expanded="true" />
-            <element signature="e#15365#15562#0" expanded="true" />
-            <element signature="e#15561#15562#0" expanded="true" />
-            <element signature="e#15607#15917#0" expanded="true" />
-            <element signature="e#15916#15917#0" expanded="true" />
-            <element signature="e#15963#16465#0" expanded="true" />
-            <element signature="e#16464#16465#0" expanded="true" />
-            <element signature="e#16507#17886#0" expanded="true" />
-            <element signature="e#17885#17886#0" expanded="true" />
-            <element signature="e#17936#18208#0" expanded="true" />
-            <element signature="e#18207#18208#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#12892#13089#0" expanded="true" />
+            <element signature="e#13088#13089#0" expanded="true" />
+            <element signature="e#13131#13328#0" expanded="true" />
+            <element signature="e#13327#13328#0" expanded="true" />
+            <element signature="e#13371#13568#0" expanded="true" />
+            <element signature="e#13567#13568#0" expanded="true" />
+            <element signature="e#13612#13809#0" expanded="true" />
+            <element signature="e#13808#13809#0" expanded="true" />
+            <element signature="e#13855#14052#0" expanded="true" />
+            <element signature="e#14051#14052#0" expanded="true" />
+            <element signature="e#14097#14294#0" expanded="true" />
+            <element signature="e#14293#14294#0" expanded="true" />
+            <element signature="e#14338#14535#0" expanded="true" />
+            <element signature="e#14534#14535#0" expanded="true" />
+            <element signature="e#14580#14777#0" expanded="true" />
+            <element signature="e#14776#14777#0" expanded="true" />
+            <element signature="e#14821#15018#0" expanded="true" />
+            <element signature="e#15017#15018#0" expanded="true" />
+            <element signature="e#15063#15260#0" expanded="true" />
+            <element signature="e#15259#15260#0" expanded="true" />
+            <element signature="e#15300#15497#0" expanded="true" />
+            <element signature="e#15496#15497#0" expanded="true" />
+            <element signature="e#15542#15853#0" expanded="true" />
+            <element signature="e#15852#15853#0" expanded="true" />
+            <element signature="e#15899#16401#0" expanded="true" />
+            <element signature="e#16400#16401#0" expanded="true" />
+            <element signature="e#16443#18030#0" expanded="true" />
+            <element signature="e#18029#18030#0" expanded="true" />
+            <element signature="e#18080#18352#0" expanded="true" />
+            <element signature="e#18351#18352#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2481,36 +2578,37 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#12957#13154#0" expanded="true" />
-            <element signature="e#13153#13154#0" expanded="true" />
-            <element signature="e#13196#13393#0" expanded="true" />
-            <element signature="e#13392#13393#0" expanded="true" />
-            <element signature="e#13436#13633#0" expanded="true" />
-            <element signature="e#13632#13633#0" expanded="true" />
-            <element signature="e#13677#13874#0" expanded="true" />
-            <element signature="e#13873#13874#0" expanded="true" />
-            <element signature="e#13920#14117#0" expanded="true" />
-            <element signature="e#14116#14117#0" expanded="true" />
-            <element signature="e#14162#14359#0" expanded="true" />
-            <element signature="e#14358#14359#0" expanded="true" />
-            <element signature="e#14403#14600#0" expanded="true" />
-            <element signature="e#14599#14600#0" expanded="true" />
-            <element signature="e#14645#14842#0" expanded="true" />
-            <element signature="e#14841#14842#0" expanded="true" />
-            <element signature="e#14886#15083#0" expanded="true" />
-            <element signature="e#15082#15083#0" expanded="true" />
-            <element signature="e#15128#15325#0" expanded="true" />
-            <element signature="e#15324#15325#0" expanded="true" />
-            <element signature="e#15365#15562#0" expanded="true" />
-            <element signature="e#15561#15562#0" expanded="true" />
-            <element signature="e#15607#15917#0" expanded="true" />
-            <element signature="e#15916#15917#0" expanded="true" />
-            <element signature="e#15963#16465#0" expanded="true" />
-            <element signature="e#16464#16465#0" expanded="true" />
-            <element signature="e#16507#17886#0" expanded="true" />
-            <element signature="e#17885#17886#0" expanded="true" />
-            <element signature="e#17936#18208#0" expanded="true" />
-            <element signature="e#18207#18208#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#12892#13089#0" expanded="true" />
+            <element signature="e#13088#13089#0" expanded="true" />
+            <element signature="e#13131#13328#0" expanded="true" />
+            <element signature="e#13327#13328#0" expanded="true" />
+            <element signature="e#13371#13568#0" expanded="true" />
+            <element signature="e#13567#13568#0" expanded="true" />
+            <element signature="e#13612#13809#0" expanded="true" />
+            <element signature="e#13808#13809#0" expanded="true" />
+            <element signature="e#13855#14052#0" expanded="true" />
+            <element signature="e#14051#14052#0" expanded="true" />
+            <element signature="e#14097#14294#0" expanded="true" />
+            <element signature="e#14293#14294#0" expanded="true" />
+            <element signature="e#14338#14535#0" expanded="true" />
+            <element signature="e#14534#14535#0" expanded="true" />
+            <element signature="e#14580#14777#0" expanded="true" />
+            <element signature="e#14776#14777#0" expanded="true" />
+            <element signature="e#14821#15018#0" expanded="true" />
+            <element signature="e#15017#15018#0" expanded="true" />
+            <element signature="e#15063#15260#0" expanded="true" />
+            <element signature="e#15259#15260#0" expanded="true" />
+            <element signature="e#15300#15497#0" expanded="true" />
+            <element signature="e#15496#15497#0" expanded="true" />
+            <element signature="e#15542#15853#0" expanded="true" />
+            <element signature="e#15852#15853#0" expanded="true" />
+            <element signature="e#15899#16401#0" expanded="true" />
+            <element signature="e#16400#16401#0" expanded="true" />
+            <element signature="e#16443#18030#0" expanded="true" />
+            <element signature="e#18029#18030#0" expanded="true" />
+            <element signature="e#18080#18352#0" expanded="true" />
+            <element signature="e#18351#18352#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2520,58 +2618,38 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="412" column="57" selection-start-line="412" selection-start-column="57" selection-end-line="412" selection-end-column="57" />
           <folding>
-            <element signature="e#12957#13154#0" expanded="true" />
-            <element signature="e#13153#13154#0" expanded="true" />
-            <element signature="e#13196#13393#0" expanded="true" />
-            <element signature="e#13392#13393#0" expanded="true" />
-            <element signature="e#13436#13633#0" expanded="true" />
-            <element signature="e#13632#13633#0" expanded="true" />
-            <element signature="e#13677#13874#0" expanded="true" />
-            <element signature="e#13873#13874#0" expanded="true" />
-            <element signature="e#13920#14117#0" expanded="true" />
-            <element signature="e#14116#14117#0" expanded="true" />
-            <element signature="e#14162#14359#0" expanded="true" />
-            <element signature="e#14358#14359#0" expanded="true" />
-            <element signature="e#14403#14600#0" expanded="true" />
-            <element signature="e#14599#14600#0" expanded="true" />
-            <element signature="e#14645#14842#0" expanded="true" />
-            <element signature="e#14841#14842#0" expanded="true" />
-            <element signature="e#14886#15083#0" expanded="true" />
-            <element signature="e#15082#15083#0" expanded="true" />
-            <element signature="e#15128#15325#0" expanded="true" />
-            <element signature="e#15324#15325#0" expanded="true" />
-            <element signature="e#15365#15562#0" expanded="true" />
-            <element signature="e#15561#15562#0" expanded="true" />
-            <element signature="e#15607#15917#0" expanded="true" />
-            <element signature="e#15916#15917#0" expanded="true" />
-            <element signature="e#15963#16465#0" expanded="true" />
-            <element signature="e#16464#16465#0" expanded="true" />
-            <element signature="e#16507#17886#0" expanded="true" />
-            <element signature="e#17885#17886#0" expanded="true" />
-            <element signature="e#17936#18208#0" expanded="true" />
-            <element signature="e#18207#18208#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#12892#13089#0" expanded="true" />
+            <element signature="e#13088#13089#0" expanded="true" />
+            <element signature="e#13131#13328#0" expanded="true" />
+            <element signature="e#13327#13328#0" expanded="true" />
+            <element signature="e#13371#13568#0" expanded="true" />
+            <element signature="e#13567#13568#0" expanded="true" />
+            <element signature="e#13612#13809#0" expanded="true" />
+            <element signature="e#13808#13809#0" expanded="true" />
+            <element signature="e#13855#14052#0" expanded="true" />
+            <element signature="e#14051#14052#0" expanded="true" />
+            <element signature="e#14097#14294#0" expanded="true" />
+            <element signature="e#14293#14294#0" expanded="true" />
+            <element signature="e#14338#14535#0" expanded="true" />
+            <element signature="e#14534#14535#0" expanded="true" />
+            <element signature="e#14580#14777#0" expanded="true" />
+            <element signature="e#14776#14777#0" expanded="true" />
+            <element signature="e#14821#15018#0" expanded="true" />
+            <element signature="e#15017#15018#0" expanded="true" />
+            <element signature="e#15063#15260#0" expanded="true" />
+            <element signature="e#15259#15260#0" expanded="true" />
+            <element signature="e#15300#15497#0" expanded="true" />
+            <element signature="e#15496#15497#0" expanded="true" />
+            <element signature="e#15542#15853#0" expanded="true" />
+            <element signature="e#15852#15853#0" expanded="true" />
+            <element signature="e#15899#16401#0" expanded="true" />
+            <element signature="e#16400#16401#0" expanded="true" />
+            <element signature="e#16443#18030#0" expanded="true" />
+            <element signature="e#18029#18030#0" expanded="true" />
+            <element signature="e#18080#18352#0" expanded="true" />
+            <element signature="e#18351#18352#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/fachadas/FachadaAsistencia_trabajador.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="70" column="39" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/controladores/CtrlAsistencia_trabajador.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Asistencia_trabajador.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="103" />
         </state>
       </provider>
     </entry>
@@ -2592,28 +2670,6 @@
       </provider>
       <provider editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Trabajador.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="43" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1434#1435#0" expanded="false" />
-            <element signature="e#1460#1461#0" expanded="false" />
-            <element signature="e#1759#1760#0" expanded="false" />
-            <element signature="e#1803#1804#0" expanded="false" />
-            <element signature="e#1836#1837#0" expanded="false" />
-            <element signature="e#1865#1866#0" expanded="false" />
-            <element signature="e#1909#1910#0" expanded="false" />
-            <element signature="e#1946#1947#0" expanded="false" />
-            <element signature="e#1984#1985#0" expanded="false" />
-            <element signature="e#2015#2016#0" expanded="false" />
-            <element signature="e#2417#2418#0" expanded="false" />
-            <element signature="e#2478#2479#0" expanded="false" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/com/android/internal/os/ZygoteInit.java">
@@ -2700,14 +2756,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/com/android/internal/os/RuntimeInit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-21/android.jar!/android/database/sqlite/SQLiteOpenHelper.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8490566">
@@ -2727,17 +2775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/logica/soporte/ManagerDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33153638">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding>
-            <element signature="e#1662#1663#0" expanded="true" />
-            <element signature="e#1719#1720#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-21/android.jar!/android/os/AsyncTask.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35579515">
@@ -2746,57 +2783,136 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Trabajador.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="210" column="0" selection-start-line="210" selection-start-column="0" selection-end-line="210" selection-end-column="0" />
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/com/android/internal/os/RuntimeInit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/android/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="14152" column="0" selection-start-line="14152" selection-start-column="0" selection-end-line="14152" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-21/android.jar!/android/view/View.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.28">
+          <caret line="279" column="19" selection-start-line="279" selection-start-column="19" selection-end-line="279" selection-end-column="19" />
           <folding>
-            <element signature="e#12957#13154#0" expanded="true" />
-            <element signature="e#13153#13154#0" expanded="true" />
-            <element signature="e#13196#13393#0" expanded="true" />
-            <element signature="e#13392#13393#0" expanded="true" />
-            <element signature="e#13436#13633#0" expanded="true" />
-            <element signature="e#13632#13633#0" expanded="true" />
-            <element signature="e#13677#13874#0" expanded="true" />
-            <element signature="e#13873#13874#0" expanded="true" />
-            <element signature="e#13920#14117#0" expanded="true" />
-            <element signature="e#14116#14117#0" expanded="true" />
-            <element signature="e#14162#14359#0" expanded="true" />
-            <element signature="e#14358#14359#0" expanded="true" />
-            <element signature="e#14403#14600#0" expanded="true" />
-            <element signature="e#14599#14600#0" expanded="true" />
-            <element signature="e#14645#14842#0" expanded="true" />
-            <element signature="e#14841#14842#0" expanded="true" />
-            <element signature="e#14886#15083#0" expanded="true" />
-            <element signature="e#15082#15083#0" expanded="true" />
-            <element signature="e#15128#15325#0" expanded="true" />
-            <element signature="e#15324#15325#0" expanded="true" />
-            <element signature="e#15365#15562#0" expanded="true" />
-            <element signature="e#15561#15562#0" expanded="true" />
-            <element signature="e#15607#15917#0" expanded="true" />
-            <element signature="e#15916#15917#0" expanded="true" />
-            <element signature="e#15963#16465#0" expanded="true" />
-            <element signature="e#16464#16465#0" expanded="true" />
-            <element signature="e#16507#17886#0" expanded="true" />
-            <element signature="e#17885#17886#0" expanded="true" />
-            <element signature="e#17936#18208#0" expanded="true" />
-            <element signature="e#18207#18208#0" expanded="true" />
+            <element signature="e#12585#12586#0" expanded="true" />
+            <element signature="e#12636#12637#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Asistencia_trabajador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/fachadas/FachadaAsistencia_trabajador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/controladores/CtrlAsistencia_trabajador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding>
+            <element signature="e#1106#1129#0" expanded="true" />
+            <element signature="e#2078#2105#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Asistencia_trabajadorJSON.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/logica/soporte/ManagerDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="53" selection-start-line="57" selection-start-column="53" selection-end-line="57" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/android/os/AsyncTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="209" column="0" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="211" column="0" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="205" column="0" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#12892#13089#0" expanded="true" />
+            <element signature="e#13088#13089#0" expanded="true" />
+            <element signature="e#13131#13328#0" expanded="true" />
+            <element signature="e#13327#13328#0" expanded="true" />
+            <element signature="e#13371#13568#0" expanded="true" />
+            <element signature="e#13567#13568#0" expanded="true" />
+            <element signature="e#13612#13809#0" expanded="true" />
+            <element signature="e#13808#13809#0" expanded="true" />
+            <element signature="e#13855#14052#0" expanded="true" />
+            <element signature="e#14051#14052#0" expanded="true" />
+            <element signature="e#14097#14294#0" expanded="true" />
+            <element signature="e#14293#14294#0" expanded="true" />
+            <element signature="e#14338#14535#0" expanded="true" />
+            <element signature="e#14534#14535#0" expanded="true" />
+            <element signature="e#14580#14777#0" expanded="true" />
+            <element signature="e#14776#14777#0" expanded="true" />
+            <element signature="e#14821#15018#0" expanded="true" />
+            <element signature="e#15017#15018#0" expanded="true" />
+            <element signature="e#15063#15260#0" expanded="true" />
+            <element signature="e#15259#15260#0" expanded="true" />
+            <element signature="e#15300#15497#0" expanded="true" />
+            <element signature="e#15496#15497#0" expanded="true" />
+            <element signature="e#15542#15853#0" expanded="true" />
+            <element signature="e#15852#15853#0" expanded="true" />
+            <element signature="e#15899#16401#0" expanded="true" />
+            <element signature="e#16400#16401#0" expanded="true" />
+            <element signature="e#16443#18030#0" expanded="true" />
+            <element signature="e#18029#18030#0" expanded="true" />
+            <element signature="e#18080#18352#0" expanded="true" />
+            <element signature="e#18351#18352#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/develop/binfactory/controlaccesorestom/clases/Sincronizador.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5454545">
-          <caret line="179" column="0" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.32890856">
+          <caret line="159" column="36" selection-start-line="159" selection-start-column="36" selection-end-line="159" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

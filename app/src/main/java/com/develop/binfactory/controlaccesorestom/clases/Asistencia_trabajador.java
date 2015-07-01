@@ -22,7 +22,7 @@ public class Asistencia_trabajador {
                 fID = Integer.valueOf(cursor.getString(cursor.getColumnIndex("_id")));
             else
                 fID = Integer.valueOf(cursor.getString(cursor.getColumnIndex("ID")));
-            ffecha = Date.valueOf(cursor.getString(cursor.getColumnIndex("fecha"))).toString();
+            ffecha = cursor.getString(cursor.getColumnIndex("fecha"));
             ftrabajador_ID = Integer.valueOf(cursor.getString(cursor.getColumnIndex("trabajador_ID")));
             fcliente_proveedor_ID = Integer.valueOf(cursor.getString(cursor.getColumnIndex("cliente_proveedor_ID")));
         } catch (Exception ex) {
