@@ -13,6 +13,7 @@ public class Asistencia_trabajador {
     public String ffecha;
     public int ftrabajador_ID;
     public int fcliente_proveedor_ID;
+    public String fhorario;
 
     //CONSTRUCTOR
     public Asistencia_trabajador(Cursor cursor) {
@@ -25,6 +26,7 @@ public class Asistencia_trabajador {
             ffecha = cursor.getString(cursor.getColumnIndex("fecha"));
             ftrabajador_ID = Integer.valueOf(cursor.getString(cursor.getColumnIndex("trabajador_ID")));
             fcliente_proveedor_ID = Integer.valueOf(cursor.getString(cursor.getColumnIndex("cliente_proveedor_ID")));
+            fhorario = cursor.getString(cursor.getColumnIndex("horario"));
         } catch (Exception ex) {
             Utils.escribeLog(ex, "Asistencia_trabajador.Constructor");
         }
@@ -68,6 +70,13 @@ public class Asistencia_trabajador {
         this.fcliente_proveedor_ID = cliente_proveedor_ID;
     }
 
+    public String getHorario() {
+        return fhorario;
+    }
+
+    public void sethorario(String horario) {
+        this.fhorario = horario;
+    }
 
     public void actualizar(Context context) {
         try {

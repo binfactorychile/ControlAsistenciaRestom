@@ -13,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.zip.GZIPInputStream;
 
 
@@ -289,5 +290,15 @@ public class Utils {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return df.format(c.getTime());
 
+	}
+	public static boolean getHorarioComidas(int from, int to)
+	{
+
+		Date date = new Date();
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		int t = c.get(Calendar.HOUR_OF_DAY) * 100 + c.get(Calendar.MINUTE);
+		boolean isBetween = to > from && t >= from && t <= to || to < from && (t >= from || t <= to);
+		return isBetween;
 	}
 }

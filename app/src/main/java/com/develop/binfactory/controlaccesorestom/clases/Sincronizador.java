@@ -5,7 +5,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONArray;
 import org.ksoap2.HeaderProperty;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.MarshalHashtable;
@@ -20,7 +19,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.http.AndroidHttpClient;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
@@ -45,7 +43,7 @@ public class Sincronizador {
     // "http://www.brisaexpress.cl/webservice2k657k/test/";
     // private static final String NAMESPACE =
     // "http://www.brisaexpress.cl/webservice2k657k/produccion/";
-    private static final String NAMESPACE = "http://192.168.1.210/webservice_restom/web/";
+    private static final String NAMESPACE = "http://192.168.0.2/webservice_restaurant/web/";
 
     // "http://www.onevoice.cl/ws_one_voice/Service.asmx";
     // private static String URL="http://192.168.2.:82/Service.asmx";
@@ -267,43 +265,45 @@ public class Sincronizador {
         try {
             if (!listaJSON.equals("vacio")) {
 
-                Type tipoArreglo = new TypeToken<ArrayList<Trabajador>>() {
+                Type tipoArreglo = new TypeToken<ArrayList<TrabajadorJSON>>() {
                 }.getType();
-                ArrayList<Trabajador> arrTrabajador = new ArrayList();
+                ArrayList<TrabajadorJSON> arrTrabajador = new ArrayList();
                 arrTrabajador = gson.fromJson(listaJSON, tipoArreglo);
                 ArrayList arrSincronizacionID = new ArrayList();
-                for (Trabajador trabajador : arrTrabajador) {
-                    if (!CtrlTrabajador.existeTrabajador(trabajador.getRut(), context))
-                        trabajador.ingresar(this.context);
+                for (TrabajadorJSON trabajador : arrTrabajador) {
+                    if (!CtrlTrabajador.existeTrabajador(trabajador.getID(), context))
+                        CtrlTrabajador.ingresarJSON(trabajador,context);
                     else
-                        trabajador.actualizar(context);
+                        CtrlTrabajador.actualizarJSON(trabajador,context);
 
-                    if (trabajador.fsincronizacion_ID > 0) {
-                        arrSincronizacionID.add(trabajador.fsincronizacion_ID);
+                    if (trabajador.getSincronizacion_ID() > 0) {
+                        arrSincronizacionID.add(trabajador.getSincronizacion_ID());
                     }
                 }
-
-                eliminarSincronizaTabletTrabajadores(arrSincronizacionID);
+                if(arrSincronizacionID.size() > 0){
+                    eliminarSincronizacionIDtrabajadores(arrSincronizacionID);
+                }
             }
         } catch (Exception e) {
             Utils.escribeLog(e, "getUsuarios");
         }
     }
 
-    private void eliminarSincronizaTabletTrabajadores(ArrayList arrSincronizacionTablet) {
+    private void eliminarSincronizacionIDtrabajadores(ArrayList arrSincronizacionTablet) {
         request = new SoapObject(NAMESPACE,
-                "eliminarSincronizaTabletTrabajadores");
+                "eliminarSincronizacionIDtrabajadores");
 
         PropertyInfo pi = new PropertyInfo();
 
-        //TODO: llenar el arreglo
+
         String arrJsonSincronizacionTablet = "";
 
         arrJsonSincronizacionTablet = gson.toJson(arrSincronizacionTablet);
         pi.setName("arrSincronizacionTablet");
         pi.setValue(arrJsonSincronizacionTablet);
-        request.addProperty(pi);
-        guardarEnWs("eliminarSincronizaTabletTrabajadores");
+
+        inicioPoblarBD("eliminarSincronizacionIDtrabajadores", pi);
+        //guardarEnWs("eliminarSincronizacionIDtrabajadores");
     }
 
     private void addPropertyRequest(String nombreAtributo, Cursor cursor) {

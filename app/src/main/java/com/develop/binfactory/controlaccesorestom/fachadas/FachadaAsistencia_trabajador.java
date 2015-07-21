@@ -29,10 +29,12 @@ public class FachadaAsistencia_trabajador {
                     "fecha" +
                     ",trabajador_ID" +
                     ",cliente_proveedor_ID" +
+                    ",horario" +
                     ") VALUES (" +
                     "'" + objeto.getFecha() + "'" +
                     ",'" + objeto.getTrabajador_ID() + "'" +
                     ",'" + objeto.getCliente_proveedor_ID() + "'" +
+                    ",'" + objeto.getHorario() + "'" +
                     ")";
 
             bd.ejecutaSinRetorno(query);
@@ -53,10 +55,12 @@ public class FachadaAsistencia_trabajador {
                     "fecha" +
                     ",trabajador_ID" +
                     ",cliente_proveedor_ID" +
+                    ",horario" +
                     ") VALUES (" +
                     "'" + objeto.getFecha() + "'" +
                     ",'" + objeto.getTrabajador_ID() + "'" +
                     ",'" + objeto.getCliente_proveedor_ID() + "'" +
+                    ",'" + objeto.getHorario() + "'" +
                     ")";
 
             bd.ejecutaSinRetorno(query);
@@ -76,6 +80,7 @@ public class FachadaAsistencia_trabajador {
                     "fecha='" + objeto.getFecha() + "'" +
                     ",trabajador_ID='" + objeto.getTrabajador_ID() + "'" +
                     ",cliente_proveedor_ID='" + objeto.getCliente_proveedor_ID() + "'" +
+                    ",horario='" + objeto.getHorario()+ "'" +
                     " WHERE ID=" + objeto.getID();
 
             bd.ejecutaSinRetorno(query);
@@ -90,6 +95,7 @@ public class FachadaAsistencia_trabajador {
                     "fecha='" + objeto.getFecha() + "'" +
                     ",trabajador_ID='" + objeto.getTrabajador_ID() + "'" +
                     ",cliente_proveedor_ID='" + objeto.getCliente_proveedor_ID() + "'" +
+                    ",horario='" + objeto.getHorario()+ "'" +
                     " WHERE ID=" + objeto.getID();
 
             bd.ejecutaSinRetorno(query);

@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,6 +37,8 @@ import com.develop.binfactory.controlaccesorestom.controladores.CtrlAsistencia_t
 import com.develop.binfactory.controlaccesorestom.controladores.CtrlTrabajador;
 import com.develop.binfactory.controlaccesorestom.logica.soporte.ManagerProviderBD;
 import com.develop.binfactory.controlaccesorestom.logica.soporte.Utils;
+import com.github.johnpersano.supertoasts.SuperToast;
+import com.github.johnpersano.supertoasts.util.Style;
 
 import junit.framework.Test;
 
@@ -48,6 +51,15 @@ public class MainActivity extends ActionBarActivity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
+
+    //FLAGS
+    public static int FLAG_DESAYUNO_INICIO = 800;
+    public static int FLAG_DESAYUNO_TERMINO = 1100;
+    public static int FLAG_ALMUERZO_INICIO = 1101;
+    public static int FLAG_ALMUERZO_TERMINO = 1700;
+    public static int FLAG_CENA_INICIO = 1701;
+    public static int FLAG_CENA_TERMINO = 100;
+
     private ProgressDialog dialog;
     String resultado_sincro;//
     String mensaje_respuesta_sincro;
@@ -59,8 +71,11 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        // remove title
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE );
 
+        setContentView(R.layout.activity_main);
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -112,6 +127,18 @@ public class MainActivity extends ActionBarActivity
                 mTitle = "Sincronizar Asistencias";
                 break;
         }
+    }
+    private void estaCheckeado()
+    {
+        String horario = "";
+        //determinar en que horario se encuentra
+        if(Utils.getHorarioComidas(FLAG_DESAYUNO_INICIO, FLAG_DESAYUNO_TERMINO))
+            horario = "desayuno";
+        else if (Utils.getHorarioComidas(FLAG_ALMUERZO_INICIO, FLAG_ALMUERZO_TERMINO))
+            horario = "almuerzo";
+        else if (Utils.getHorarioComidas(FLAG_CENA_INICIO, FLAG_CENA_TERMINO))
+            horario = "cena";
+
     }
 
     public void restoreActionBar() {
@@ -460,25 +487,46 @@ public class MainActivity extends ActionBarActivity
                 @Override
                 public void onClick(View v) {
                     boolean validation = validarRut(edt_rut.getText().toString());
-                    ArrayList<Trabajador> arrTrabajador = CtrlTrabajador.getListado("select * from trabajador where rut like '" + edt_rut.getText().toString() + "'", v.getContext());
+                    String query = "select * from trabajador where rut like '" + edt_rut.getText().toString() + "'";
+                    ArrayList<Trabajador> arrTrabajador = CtrlTrabajador.getListado(query, v.getContext());
                     if (validation && (arrTrabajador.size() > 0)) {
                         Trabajador objTrabajador = arrTrabajador.get(0);
-                        boolean isChecked = isCheckedToday(objTrabajador.getID(), v);
+                        String horario = getHorario();
+                        boolean isChecked = estaCheckeado(objTrabajador.getID(), v,horario);
                         if (isChecked) {
                             edt_rut.setText("");
-                            Toast.makeText(getActivity(), "Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " ya se ha checkeado", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(), "Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " ya se ha checkeado", Toast.LENGTH_SHORT).show();
+                            SuperToast superToast = new SuperToast(getActivity());
+                            superToast.setDuration(SuperToast.Duration.LONG);
+                            superToast.setText("Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " ya se ha checkeado");
+                            superToast.setTextSize(40);
+                            superToast.setIcon(SuperToast.Icon.Dark.EXIT, SuperToast.IconPosition.LEFT);
+                            superToast.show();
                         } else {
                             int resultado = registrarTrabajador(objTrabajador, v);
                             if (resultado > 0) {
 
-                                boolean resultado2 = registrarSincronizacionAsistencia(objTrabajador.fID, v);
+                                boolean resultado2 = registrarSincronizacionAsistencia(resultado, v);
                             }
 
                             edt_rut.setText("");
-                            Toast.makeText(getActivity(), "Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " checkeado", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(), "Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " checkeado", Toast.LENGTH_SHORT).show();
+                            SuperToast superToast = new SuperToast(getActivity());
+                            superToast.setDuration(SuperToast.Duration.LONG);
+                            superToast.setText("Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " checkeado");
+                            superToast.setTextSize(40);
+                            superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
+                            superToast.show();
                         }
                     } else {
-                        Toast.makeText(getActivity(), "Rut ingresado no existe", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), "Rut ingresado no existe", Toast.LENGTH_SHORT).show();
+                        edt_rut.setText("");
+                        SuperToast superToast = new SuperToast(getActivity());
+                        superToast.setDuration(SuperToast.Duration.LONG);
+                        superToast.setText("Rut ingresado no existe");
+                        superToast.setTextSize(40);
+                        superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
+                        superToast.show();
                     }
                 }
             });
@@ -494,11 +542,12 @@ public class MainActivity extends ActionBarActivity
         }
 
         private int registrarTrabajador(Trabajador objTrabajador, View v) {
-            int resultado = 1;
+            int resultado = 0;
             Asistencia_trabajador objAsistenciaTrabajador = new Asistencia_trabajador();
             objAsistenciaTrabajador.fcliente_proveedor_ID = objTrabajador.fcliente_proveedor_ID;
             objAsistenciaTrabajador.ftrabajador_ID = objTrabajador.fID;
             objAsistenciaTrabajador.ffecha = Utils.getfechaHoraActualAlRevez();
+            objAsistenciaTrabajador.fhorario = getHorario();
             resultado = objAsistenciaTrabajador.ingresar(v.getContext());
             return resultado;
         }
@@ -516,6 +565,32 @@ public class MainActivity extends ActionBarActivity
                 return false;
             }
             return true;
+        }
+        private String getHorario()
+        {
+            String horario = "";
+            if(Utils.getHorarioComidas(FLAG_DESAYUNO_INICIO, FLAG_DESAYUNO_TERMINO))
+                horario = "desayuno";
+            else if (Utils.getHorarioComidas(FLAG_ALMUERZO_INICIO, FLAG_ALMUERZO_TERMINO))
+                horario = "almuerzo";
+            else if (Utils.getHorarioComidas(FLAG_CENA_INICIO, FLAG_CENA_TERMINO))
+                horario = "cena";
+            return horario;
+        }
+        private boolean estaCheckeado(int trabajador_ID, View v, String horario)
+        {
+            String fecha_actual = Utils.getfechaHoraActualAlRevez();
+
+            //determinar en que horario se encuentra
+
+
+            Toast.makeText(getActivity(), "Horario:" + horario, Toast.LENGTH_SHORT).show();
+            String query = "SELECT * FROM asistencia_trabajador WHERE date('" + fecha_actual+"') = date('now') and horario = '" + horario + "' and trabajador_ID = " + trabajador_ID;
+            ArrayList<Asistencia_trabajador> arrAsistenciaTrabajador = CtrlAsistencia_trabajador.getListado(query, v.getContext());
+            if(arrAsistenciaTrabajador.size() > 0){
+                return  true;
+            }
+            return false;
         }
 
         private boolean isCheckedToday(int trabajador_ID, View v) {

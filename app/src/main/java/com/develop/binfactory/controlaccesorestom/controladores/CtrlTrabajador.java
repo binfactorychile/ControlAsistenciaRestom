@@ -36,9 +36,9 @@ public class CtrlTrabajador {
         }
     }
 
-    public static boolean existeTrabajador(String rut, Context context){
+    public static boolean existeTrabajador(int trabajador_ID, Context context){
         boolean existe = false;
-        Trabajador trabajador = getTrabajadorPorRut(rut, context);
+        Trabajador trabajador = getTrabajador(trabajador_ID, context);
         if(trabajador.fID > 0)
             existe = true;
         return existe;

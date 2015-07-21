@@ -53,73 +53,97 @@
                         android:id="@+id/btn_uno"
                         android:layout_gravity="fill"
                         android:background="#FF7700"
-                        android:padding="30dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp"
                         android:text="1"
                         android:textColor="@color/abc_primary_text_material_dark"
-                        android:textSize="40sp" />
+                        android:textSize="50sp" />
 
                     <Button
                         android:id="@+id/btn_dos"
                         android:layout_gravity="fill"
                         android:background="#FF7700"
-                        android:padding="30dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp"
                         android:text="2"
                         android:textColor="@color/abc_primary_text_material_dark"
-                        android:textSize="40sp" />
+                        android:textSize="50sp" />
 
                     <Button
                         android:id="@+id/btn_tres"
                         android:layout_gravity="fill"
                         android:background="#FF7700"
-                        android:padding="30dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp"
                         android:text="3"
                         android:textColor="@color/abc_primary_text_material_dark"
-                        android:textSize="40sp" />
+                        android:textSize="50sp" />
 
                     <ImageButton
                         android:id="@+id/btn_delete"
                         android:layout_gravity="fill"
                         android:background="#FF7700"
-                        android:padding="30dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp"
                         android:src="@android:drawable/ic_input_delete"
                         android:textColor="@color/abc_primary_text_material_dark"
-                        android:textSize="40sp" />
+                        android:textSize="50sp" />
 
                     <Button
                         android:id="@+id/btn_cuatro"
                         android:layout_gravity="fill"
                         android:background="#FF7700"
-                        android:padding="30dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp"
                         android:text="4"
                         android:textColor="@color/abc_primary_text_material_dark"
-                        android:textSize="40sp" />
+                        android:textSize="50sp" />
 
                     <Button
                         android:id="@+id/btn_cinco"
                         android:layout_gravity="fill"
                         android:background="#FF7700"
-                        android:padding="30dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp"
                         android:text="5"
                         android:textColor="@color/abc_primary_text_material_dark"
-                        android:textSize="40sp" />
+                        android:textSize="50sp" />
 
                     <Button
                         android:id="@+id/btn_seis"
                         android:layout_gravity="fill"
                         android:background="#FF7700"
-                        android:padding="30dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp"
                         android:text="6"
                         android:textColor="@color/abc_primary_text_material_dark"
-                        android:textSize="40sp" />
+                        android:textSize="50sp" />
 
                     <Button
                         android:id="@+id/btn_guion"
                         android:layout_gravity="fill"
                         android:background="#FF7700"
-                        android:padding="30dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp"
                         android:text="-"
                         android:textColor="@color/abc_primary_text_material_dark"
-                        android:textSize="40sp" />
+                        android:textSize="50sp" />
 
 
 
@@ -127,54 +151,73 @@
                         android:id="@+id/btn_siete"
                         android:layout_gravity="fill"
                         android:background="#FF7700"
-                        android:padding="30dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp"
                         android:text="7"
                         android:textColor="@color/abc_primary_text_material_dark"
-                        android:textSize="40sp" />
+                        android:textSize="50sp" />
 
                     <Button
                         android:id="@+id/btn_ocho"
                         android:layout_gravity="fill"
                         android:background="#FF7700"
-                        android:padding="30dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp"
                         android:text="8"
                         android:textColor="@color/abc_primary_text_material_dark"
-                        android:textSize="40sp" />
+                        android:textSize="50sp" />
 
                     <Button
                         android:id="@+id/btn_nueve"
                         android:layout_gravity="fill"
                         android:background="#FF7700"
-                        android:padding="30dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp"
                         android:text="9"
                         android:textColor="@color/abc_primary_text_material_dark"
-                        android:textSize="40sp" />
+                        android:textSize="50sp" />
                     <Button
                         android:id="@+id/btn_ok"
                         android:layout_gravity="fill"
                         android:layout_rowSpan="2"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp"
                         android:background="#FF7700"
                         android:text="OK"
                         android:textColor="@color/abc_primary_text_material_dark"
-                        android:textSize="40sp" />
+                        android:textSize="50sp" />
                     <Button
                         android:id="@+id/btn_k"
                         android:layout_columnSpan="2"
                         android:layout_gravity="fill"
                         android:background="#FF7700"
-                        android:padding="30dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp"
                         android:text="K"
                         android:textColor="@color/abc_primary_text_material_dark"
-                        android:textSize="40sp" />
+                        android:textSize="50sp" />
 
                     <Button
                         android:id="@+id/btn_cero"
                         android:layout_gravity="fill"
                         android:background="#FF7700"
-                        android:padding="30dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingTop="30dp"
+                        android:paddingBottom="30dp"
                         android:text="0"
                         android:textColor="@color/abc_primary_text_material_dark"
-                        android:textSize="40sp" />
+                        android:textSize="50sp" />
 
 
                 </GridLayout>

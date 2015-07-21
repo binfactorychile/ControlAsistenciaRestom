@@ -32,7 +32,7 @@ public class ManagerDB extends SQLiteOpenHelper {
 			",fecha TEXT" +
 			",trabajador_ID INTEGER" +
 			",cliente_proveedor_ID INTEGER" +
-
+			",horario TEXT"+
 			");";
 	private static final String DB_CREATE_SINCRONIZACION_ASISTENCIA = "CREATE TABLE sincronizacion_asistencia (ID INTEGER PRIMARY KEY AUTOINCREMENT, registro_ID INTEGER NOT NULL);";
 	/*private static final String DB_CREATE_SINCRONIZACION_ASISTENCIA = "CREATE TABLE \"sincronizacion_asistencia\" (" +
