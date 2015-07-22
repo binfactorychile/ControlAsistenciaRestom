@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     //FLAGS
-    public static int FLAG_DESAYUNO_INICIO = 800;
+    public static int FLAG_DESAYUNO_INICIO = 500;
     public static int FLAG_DESAYUNO_TERMINO = 1100;
     public static int FLAG_ALMUERZO_INICIO = 1101;
     public static int FLAG_ALMUERZO_TERMINO = 1700;
@@ -149,7 +149,7 @@ public class MainActivity extends ActionBarActivity
     }
 
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen
@@ -175,7 +175,7 @@ public class MainActivity extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     ////////sincronizacion de los trabajadores y sus asistencias::::+
     public void enviarAsistencias() {

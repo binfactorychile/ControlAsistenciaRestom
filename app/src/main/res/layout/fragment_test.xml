@@ -17,6 +17,7 @@
         android:singleLine="true"
         android:padding="50dp"
         android:textSize="50dp"
+        android:gravity="center"
         android:textColor="@color/switch_thumb_normal_material_light"/>
 
     <LinearLayout

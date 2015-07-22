@@ -43,7 +43,7 @@ public class Sincronizador {
     // "http://www.brisaexpress.cl/webservice2k657k/test/";
     // private static final String NAMESPACE =
     // "http://www.brisaexpress.cl/webservice2k657k/produccion/";
-    private static final String NAMESPACE = "http://192.168.0.2/webservice_restaurant/web/";
+    private static final String NAMESPACE = "http://192.168.1.210/webservice_restom/web/";
 
     // "http://www.onevoice.cl/ws_one_voice/Service.asmx";
     // private static String URL="http://192.168.2.:82/Service.asmx";
@@ -83,7 +83,7 @@ public class Sincronizador {
             Utils.escribeLog("Error en getTrabajadores, tablet->"
                     + mac_address);
         }
-
+        inicioPoblarBD("getTrabajadoresEliminados", pi);
         return resultado;
     }
 
@@ -182,8 +182,12 @@ public class Sincronizador {
 
             posicionError = "3";
 
-            if (funcionWS == "getTrabajadores")
+            if (funcionWS == "getTrabajadores") {
                 getTrabajadores(strJSON);
+            }
+            else if(funcionWS == "getTrabajadoresEliminados"){
+                getTrabajadoresEliminados(strJSON);
+            }
             posicionError = "4";
             // db.close();
             return "ok";
@@ -285,7 +289,34 @@ public class Sincronizador {
                 }
             }
         } catch (Exception e) {
-            Utils.escribeLog(e, "getUsuarios");
+            Utils.escribeLog(e, "getTrabajadores");
+        }
+    }
+
+    private void getTrabajadoresEliminados(String listaJSON) {
+        // se crea el objeto que ayuda deserealizar la cadena JSON
+        gson = new Gson();
+
+        try {
+            if (!listaJSON.equals("vacio")) {
+
+                Type tipoArreglo = new TypeToken<ArrayList<Sincronizar_tabletJSON>>() {
+                }.getType();
+                ArrayList<Sincronizar_tabletJSON> arrSincro = new ArrayList();
+                arrSincro = gson.fromJson(listaJSON, tipoArreglo);
+                ArrayList arrSincronizacionID = new ArrayList();
+                for (Sincronizar_tabletJSON objSincro : arrSincro) {
+                    if (CtrlTrabajador.existeTrabajador(objSincro.getRegistro_ID(), context))
+                        CtrlTrabajador.eliminar(objSincro.getRegistro_ID(), context);
+
+                    arrSincronizacionID.add(objSincro.getID());
+                }
+                if(arrSincronizacionID.size() > 0){
+                    eliminarSincronizacionIDtrabajadores(arrSincronizacionID);
+                }
+            }
+        } catch (Exception e) {
+            Utils.escribeLog(e, "getTrabajadoresEliminados");
         }
     }
 
