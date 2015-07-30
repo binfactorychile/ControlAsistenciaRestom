@@ -37,6 +37,7 @@ import com.develop.binfactory.controlaccesorestom.controladores.CtrlAsistencia_t
 import com.develop.binfactory.controlaccesorestom.controladores.CtrlTrabajador;
 import com.develop.binfactory.controlaccesorestom.logica.soporte.ManagerProviderBD;
 import com.develop.binfactory.controlaccesorestom.logica.soporte.Utils;
+import com.develop.binfactory.controlaccesorestom.logica.soporte.clsMantenimiento;
 import com.github.johnpersano.supertoasts.SuperToast;
 import com.github.johnpersano.supertoasts.util.Style;
 
@@ -90,8 +91,6 @@ public class MainActivity extends ActionBarActivity
         dialog.setTitle("Sincronizando");
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setCancelable(false);
-
-
     }
 
     @Override
@@ -105,10 +104,14 @@ public class MainActivity extends ActionBarActivity
                     .commit();
 
         } else if (position == 1) {
+            clsMantenimiento mantenimiento = new clsMantenimiento(this);
+            String resultado = mantenimiento.respaldarBD();
             sincronormal.origen = Integer.toString(position);
             sincronormal.execute("HOLI", "JKJK");
 
         } else if (position == 2) {
+            clsMantenimiento mantenimiento = new clsMantenimiento(this);
+            String resultado = mantenimiento.respaldarBD();
             sincronormal.origen = Integer.toString(position);
             sincronormal.execute("HOLI", "JKJK");
         }
@@ -585,7 +588,7 @@ public class MainActivity extends ActionBarActivity
 
 
             Toast.makeText(getActivity(), "Horario:" + horario, Toast.LENGTH_SHORT).show();
-            String query = "SELECT * FROM asistencia_trabajador WHERE date('" + fecha_actual+"') = date('now') and horario = '" + horario + "' and trabajador_ID = " + trabajador_ID;
+            String query = "SELECT * FROM asistencia_trabajador WHERE date('" + fecha_actual+"') LIKE date(fecha) and horario = '" + horario + "' and trabajador_ID = " + trabajador_ID;
             ArrayList<Asistencia_trabajador> arrAsistenciaTrabajador = CtrlAsistencia_trabajador.getListado(query, v.getContext());
             if(arrAsistenciaTrabajador.size() > 0){
                 return  true;

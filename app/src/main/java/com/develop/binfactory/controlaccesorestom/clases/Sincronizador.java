@@ -43,7 +43,7 @@ public class Sincronizador {
     // "http://www.brisaexpress.cl/webservice2k657k/test/";
     // private static final String NAMESPACE =
     // "http://www.brisaexpress.cl/webservice2k657k/produccion/";
-    private static final String NAMESPACE = "http://192.168.1.210/webservice_restom/web/";
+    private static final String NAMESPACE = "http://192.168.0.2/webservice_restaurant/web/";
 
     // "http://www.onevoice.cl/ws_one_voice/Service.asmx";
     // private static String URL="http://192.168.2.:82/Service.asmx";
@@ -83,7 +83,7 @@ public class Sincronizador {
             Utils.escribeLog("Error en getTrabajadores, tablet->"
                     + mac_address);
         }
-        inicioPoblarBD("getTrabajadoresEliminados", pi);
+        //inicioPoblarBD("getTrabajadoresEliminados", pi);
         return resultado;
     }
 
