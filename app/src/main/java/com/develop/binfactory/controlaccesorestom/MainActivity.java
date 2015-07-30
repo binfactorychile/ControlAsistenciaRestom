@@ -121,7 +121,7 @@ public class MainActivity extends ActionBarActivity
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = "Resgistro Asistencia";
+                mTitle = "";
                 break;
             case 2:
                 mTitle = "Sincronizar Trabajadores";
@@ -201,18 +201,11 @@ public class MainActivity extends ActionBarActivity
             if (!sincro.mac_address.equalsIgnoreCase("no")) {
                 if (sincro.existeConectividad(MainActivity.this)) {
                     resultado_sincro = "correcto";
-                    if (origen.equals("1")) {
+                    if (origen.equals("0")) {
                         mensaje_respuesta_sincro = sincro
                                 .enviarAsistenciasTrabajador();
-                        if (mensaje_respuesta_sincro.equals("ok")) {
-
-                            dialog.dismiss();
-                        } else {
-                            resultado_sincro = "error_envio";
-
-                        }
-                    } else if (origen.equals("2")) {
-                        mensaje_respuesta_sincro = sincro.traerDatosServidorPrincipal();
+                        mensaje_respuesta_sincro = sincro.traerDatosServidorPrincipal("getTrabajadores");
+                        mensaje_respuesta_sincro = sincro.traerDatosServidorPrincipal("getTrabajadoresEliminados");
                         if (mensaje_respuesta_sincro.equals("ok")) {
 
                             dialog.dismiss();

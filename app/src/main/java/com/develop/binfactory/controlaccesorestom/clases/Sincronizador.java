@@ -71,19 +71,18 @@ public class Sincronizador {
         this.usuario_ID = usuario_ID;
     }
 
-    public String traerDatosServidorPrincipal() {
+    public String traerDatosServidorPrincipal(String funcion) {
         // limpiarTablas();
         String resultado;
 
         PropertyInfo pi = new PropertyInfo();
         pi.setName("mac_address");
         pi.setValue(mac_address);
-        resultado = inicioPoblarBD("getTrabajadores", pi);
+        resultado = inicioPoblarBD(funcion, pi);
         if (resultado == "error") {
-            Utils.escribeLog("Error en getTrabajadores, tablet->"
+            Utils.escribeLog("Error en traerDatosServidorPrincipal, tablet->"
                     + mac_address);
         }
-        //inicioPoblarBD("getTrabajadoresEliminados", pi);
         return resultado;
     }
 
