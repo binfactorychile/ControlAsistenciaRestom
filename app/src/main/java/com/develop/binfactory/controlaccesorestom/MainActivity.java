@@ -121,11 +121,8 @@ public class MainActivity extends ActionBarActivity
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-<<<<<<< HEAD
-                mTitle = "";
-=======
+
                 mTitle = "Registro Asistencia";
->>>>>>> update
                 break;
             case 2:
                 mTitle = "Sincronizar Trabajadores";
