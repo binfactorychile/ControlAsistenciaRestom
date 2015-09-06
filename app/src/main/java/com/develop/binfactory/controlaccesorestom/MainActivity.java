@@ -489,7 +489,9 @@ public class MainActivity extends ActionBarActivity
 
                 @Override
                 public void onClick(View v) {
-                    boolean validation = validarRut(edt_rut.getText().toString());
+                    testsincro(v);
+
+                    /*boolean validation = validarRut(edt_rut.getText().toString());
                     String query = "select * from trabajador where rut like '" + edt_rut.getText().toString() + "'";
                     ArrayList<Trabajador> arrTrabajador = CtrlTrabajador.getListado(query, v.getContext());
                     if (validation && (arrTrabajador.size() > 0)) {
@@ -530,7 +532,7 @@ public class MainActivity extends ActionBarActivity
                         superToast.setTextSize(40);
                         superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
                         superToast.show();
-                    }
+                    }*/
                 }
             });
 
@@ -644,6 +646,18 @@ public class MainActivity extends ActionBarActivity
             return validation;
         }
 
+        public void testsincro(View v)
+        {
+
+            ArrayList<Trabajador> arrTrab = CtrlTrabajador.getListado("select * from trabajador",v.getContext());
+            for(Trabajador objTrabajador : arrTrab) {
+                int resultado = registrarTrabajador(objTrabajador, v);
+                if (resultado > 0) {
+
+                    boolean resultado2 = registrarSincronizacionAsistencia(resultado, v);
+                }
+            }
+        }
 
         @Override
         public void onAttach(Activity activity) {
