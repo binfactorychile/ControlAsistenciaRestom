@@ -79,6 +79,20 @@ public class CtrlAsistencia_trabajador {
         }
     }
 
+    public static int getCantidadRegistrosSincronizacionAsistencia(Context context){
+        int cantidad = 0;
+        String query = "SELECT COUNT(*) AS cantidad FROM sincronizacion_asistencia";
+        ManagerProviderBD bd = new ManagerProviderBD(context);
+        bd.open();
+        Cursor cursor = FachadaAsistencia_trabajador.getCantidadRegistrosSincronizacionAsistencia(query, bd);
+        cursor.moveToFirst();
+
+        cantidad = Integer.valueOf(cursor.getString(cursor.getColumnIndex("cantidad")));
+
+        bd.close();
+        return  cantidad;
+    }
+
     public static int ingresar(Asistencia_trabajador objeto, Context context) {
         ManagerProviderBD bd = new ManagerProviderBD(context);
         bd.open();

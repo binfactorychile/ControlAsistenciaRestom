@@ -33,23 +33,12 @@ import com.google.gson.reflect.TypeToken;
 
 public class Sincronizador {
 
-    // private static final String NAMESPACE =
-    // private static final String NAMESPACE
-    // ="http://192.168.0.102/webservice/web/";
-    // private static final String NAMESPACE
-    // ="http://www.brisaexpress.cl/webservice2k657k/produccion/";
-    //
-    // private static final String NAMESPACE =
-    // "http://www.brisaexpress.cl/webservice2k657k/test/";
-    // private static final String NAMESPACE =
-    // "http://www.brisaexpress.cl/webservice2k657k/produccion/";
+    //este mac
+    //private static final String NAMESPACE = "http://192.168.1.16/webservice_restaurant2/web/";
+
+    //epinakeitor
     private static final String NAMESPACE = "http://192.168.0.2/webservice_restaurant/web/";
 
-    // "http://www.onevoice.cl/ws_one_voice/Service.asmx";
-    // private static String URL="http://192.168.2.:82/Service.asmx";
-    // private static String URL = "http://192.168.2.12:83/Service1.asmx";
-
-    // private static String URL = "http://192.168.2.9:83/Service1.asmx";
     private static String URL = NAMESPACE + "service.php";
 
     // http://192.168.2.11:83/Service1.asmx/getUsuarios

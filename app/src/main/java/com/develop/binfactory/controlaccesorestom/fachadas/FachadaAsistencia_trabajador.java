@@ -21,7 +21,16 @@ public class FachadaAsistencia_trabajador {
             return null;
         }
     }
+    public static Cursor getCantidadRegistrosSincronizacionAsistencia(String query, ManagerProviderBD bd){
+        try {
+            Cursor cursor = bd.ejecutaConRetorno(query);
+            return cursor;
 
+        } catch (Exception ex) {
+            Utils.escribeLog(ex, "FachadaAsistencia_trabajador.getCantidadRegistrosSincronizacionAsistencia");
+            return null;
+        }
+    }
     public static int ingresarJSON(Asistencia_trabajadorJSON objeto, ManagerProviderBD bd) {
         try {
 
