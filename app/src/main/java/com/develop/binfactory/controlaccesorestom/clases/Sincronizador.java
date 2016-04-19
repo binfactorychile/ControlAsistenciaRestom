@@ -165,9 +165,10 @@ public class Sincronizador {
                     .setXmlVersionTag("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
             // db.open();
             transporte.call("http://tempuri.org/" + funcionWS, envelope);
-            resultsRequestSOAP = (SoapPrimitive) envelope.getResponse();
+            //resultsRequestSOAP = (SoapPrimitive) envelope.getResponse();
             posicionError = "2";
-            String strJSON = resultsRequestSOAP.toString();
+            //String strJSON = resultsRequestSOAP.toString();
+            String strJSON = (String)envelope.getResponse();
 
             posicionError = "3";
 
@@ -548,7 +549,8 @@ public class Sincronizador {
             transporte.call(NAMESPACE + "existeConectividad", envelope);
             // transporte.call("http://tempuri.org/getUsuarios", envelope);
             (new MarshalHashtable()).register(envelope);
-            resultsRequestSOAP = (SoapPrimitive) envelope.getResponse();
+            //resultsRequestSOAP = (SoapPrimitive) envelope.getResponse();
+            String dato = (String) envelope.getResponse();
             return true;
 
         } catch (IOException e) {
