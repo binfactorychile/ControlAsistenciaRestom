@@ -4,18 +4,20 @@ import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.develop.binfactory.controlaccesorestom.clases.Sincronizador;
 import com.develop.binfactory.controlaccesorestom.logica.soporte.Utils;
 import com.develop.binfactory.controlaccesorestom.logica.soporte.clsMantenimiento;
 
 public class MainActivity extends FragmentActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks,TestFragment.onSincronizarListener {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks,TestFragment.onSincronizarListener,Comunicator {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -70,6 +72,7 @@ public class MainActivity extends FragmentActivity
         if (position == 0) {
             TestFragment test = TestFragment.newInstance(position+1);
             test.setOn_sincronizar_listener(this);
+            test.setComunicator(this);
             fragmentManager.beginTransaction()
                     .replace(R.id.container, test)
                     .commit();
@@ -154,6 +157,27 @@ public class MainActivity extends FragmentActivity
     ////////sincronizacion de los trabajadores y sus asistencias::::+
     public void enviarAsistencias() {
 
+    }
+
+    @Override
+    public void seleccionExtras() {
+        String items[] = {"Bebida 1.5lts","Bebida 500cc","Agua 1.5lts","Agua 500cc", "Té","Café"};
+        new MaterialDialog.Builder(this)
+                .title("SELECCIONE EXTRAS")
+                .items(items)
+                .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
+                    @Override
+                    public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+                        /**
+                         * If you use alwaysCallMultiChoiceCallback(), which is discussed below,
+                         * returning false here won't allow the newly selected check box to actually be selected.
+                         * See the limited multi choice dialog example in the sample project for details.
+                         **/
+                        return true;
+                    }
+                })
+                .positiveText("LISTO")
+                .show();
     }
 
     @Override

@@ -61,6 +61,7 @@ public class TestFragment extends Fragment {
     private Button btn_k;
     private ImageButton btn_delete;
     private onSincronizarListener on_sincronizar_listener;
+    private Comunicator c;
 
     public interface onSincronizarListener {
         public void sicronizarPeriodico();
@@ -68,6 +69,11 @@ public class TestFragment extends Fragment {
 
     public void setOn_sincronizar_listener(onSincronizarListener on_sincronizar_listener) {
         this.on_sincronizar_listener = on_sincronizar_listener;
+    }
+
+    public void setComunicator(Comunicator _c)
+    {
+        c= _c;
     }
 
     public static TestFragment newInstance(int sectionNumber) {
@@ -226,6 +232,7 @@ public class TestFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
+                c.seleccionExtras();
                 boolean validation = validarRut(edt_rut.getText().toString());
                 String query = "select * from trabajador where rut like '" + edt_rut.getText().toString() + "'";
                 ArrayList<Trabajador> arrTrabajador = CtrlTrabajador.getListado(query, v.getContext());
