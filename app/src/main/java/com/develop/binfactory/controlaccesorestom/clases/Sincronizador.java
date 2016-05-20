@@ -37,7 +37,7 @@ public class Sincronizador {
     //private static final String NAMESPACE = "http://192.168.1.16/webservice_restaurant2/web/";
 
     //epinakeitor
-    private static final String NAMESPACE = "http://192.168.0.2/webservice_restaurant/web/";
+    private static final String NAMESPACE = "http://192.168.2.2/webservice_restaurant/web/";
 
     private static String URL = NAMESPACE + "service.php";
 
