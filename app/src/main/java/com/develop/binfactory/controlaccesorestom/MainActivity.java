@@ -1,51 +1,18 @@
 package com.develop.binfactory.controlaccesorestom;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
-
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Window;
+import android.view.View;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.util.Log;
 
-import com.develop.binfactory.controlaccesorestom.clases.Asistencia_trabajador;
 import com.develop.binfactory.controlaccesorestom.clases.Sincronizador;
-import com.develop.binfactory.controlaccesorestom.clases.Trabajador;
-import com.develop.binfactory.controlaccesorestom.controladores.CtrlAsistencia_trabajador;
-import com.develop.binfactory.controlaccesorestom.controladores.CtrlTrabajador;
-import com.develop.binfactory.controlaccesorestom.logica.soporte.ManagerProviderBD;
 import com.develop.binfactory.controlaccesorestom.logica.soporte.Utils;
 import com.develop.binfactory.controlaccesorestom.logica.soporte.clsMantenimiento;
-import com.github.johnpersano.supertoasts.SuperToast;
-import com.github.johnpersano.supertoasts.util.Style;
-
-import junit.framework.Test;
-
-import java.util.ArrayList;
 
 public class MainActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks,TestFragment.onSincronizarListener {
@@ -137,13 +104,14 @@ public class MainActivity extends FragmentActivity
     }
 
     private void realizarSincronizacion() {
-        int cantidad_registros = CtrlAsistencia_trabajador.getCantidadRegistrosSincronizacionAsistencia(this);
-
-        if (cantidad_registros >= 5) {
-            SincronizadorPeriodico sincroPeriodico = new SincronizadorPeriodico();
-            sincroPeriodico.execute("HOLI", "JKJK");
-        }
-
+//        int cantidad_registros = CtrlAsistencia_trabajador.getCantidadRegistrosSincronizacionAsistencia(this);
+//
+//        if (cantidad_registros >= 5) {
+//            SincronizadorPeriodico sincroPeriodico = new SincronizadorPeriodico();
+//            sincroPeriodico.execute("HOLI", "JKJK");
+//        }
+        SincronizadorPeriodico sincroPeriodico = new SincronizadorPeriodico();
+        sincroPeriodico.execute("HOLI", "JKJK");
 
     }
 
