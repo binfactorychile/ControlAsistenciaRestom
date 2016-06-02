@@ -42,6 +42,15 @@ public class ManagerDB extends SQLiteOpenHelper {
 			"CONSTRAINT \"fk_asistencia_trabajador\" FOREIGN KEY (\"registro_ID\") REFERENCES \"asistencia_trabajador\" (\"ID\")" +
 			");";*/
 
+	// CREATE TABLA DE CLIENTE_PRODUCTO_COMPUESTO
+	private static final String DB_CREATE_CLIENTE_PRODUCTO_COMPUESTO = "CREATE TABLE cliente_producto_compuesto (" +
+			"ID INTEGER PRIMARY KEY AUTOINCREMENT" +
+			",producto_compuesto_ID INTEGER" +
+			",cliente_proveedor_ID INTEGER" +
+			",precio INTEGER" +
+			",nombre_producto TEXT" +
+
+			");";
 	
 	static final String NOMBRE_ALL_DB = "nombre";
 
@@ -56,6 +65,7 @@ public class ManagerDB extends SQLiteOpenHelper {
 		sqliteDBinstancia.execSQL(DB_CREATE_TRABAJADOR);
         sqliteDBinstancia.execSQL(DB_CREATE_ASISTENCIA_TRABAJADOR);
 		sqliteDBinstancia.execSQL(DB_CREATE_SINCRONIZACION_ASISTENCIA);
+		sqliteDBinstancia.execSQL(DB_CREATE_CLIENTE_PRODUCTO_COMPUESTO);
 	}
 
 	// CREACION DE INSTANCIA PARA ABRIR BASE DE BASE DE DATOS
