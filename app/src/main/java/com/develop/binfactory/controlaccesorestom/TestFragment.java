@@ -1,6 +1,7 @@
 package com.develop.binfactory.controlaccesorestom;
 
 import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -232,41 +233,12 @@ public class TestFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                c.seleccionExtras();
                 boolean validation = validarRut(edt_rut.getText().toString());
                 String query = "select * from trabajador where rut like '" + edt_rut.getText().toString() + "'";
                 ArrayList<Trabajador> arrTrabajador = CtrlTrabajador.getListado(query, v.getContext());
                 if (validation && (arrTrabajador.size() > 0)) {
                     Trabajador objTrabajador = arrTrabajador.get(0);
-                    String horario = getHorario();
-                    boolean isChecked = estaCheckeado(objTrabajador.getID(), v, horario);
-                    if (isChecked) {
-                        edt_rut.setText("");
-                        //Toast.makeText(getActivity(), "Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " ya se ha checkeado", Toast.LENGTH_SHORT).show();
-                        SuperToast superToast = new SuperToast(getActivity());
-                        superToast.setDuration(SuperToast.Duration.LONG);
-                        superToast.setText("Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " ya se ha checkeado");
-                        superToast.setTextSize(40);
-                        superToast.setIcon(SuperToast.Icon.Dark.EXIT, SuperToast.IconPosition.LEFT);
-                        superToast.show();
-                    } else {
-                        int resultado = registrarTrabajador(objTrabajador, v);
-                        if (resultado > 0) {
-
-                            boolean resultado2 = registrarSincronizacionAsistencia(resultado, v);
-                        }
-
-                        edt_rut.setText("");
-                        //Toast.makeText(getActivity(), "Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " checkeado", Toast.LENGTH_SHORT).show();
-                        SuperToast superToast = new SuperToast(getActivity());
-                        superToast.setDuration(SuperToast.Duration.LONG);
-                        superToast.setText("Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " checkeado");
-                        superToast.setTextSize(40);
-                        superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
-                        superToast.show();
-                        on_sincronizar_listener.sicronizarPeriodico();
-
-                    }
+                    c.seleccionExtras(objTrabajador.fcliente_proveedor_ID,objTrabajador);
                 } else {
                     //Toast.makeText(getActivity(), "Rut ingresado no existe", Toast.LENGTH_SHORT).show();
                     edt_rut.setText("");
@@ -290,22 +262,54 @@ public class TestFragment extends Fragment {
         });
     }
 
+    private void registraAsistencia(Context context, Trabajador objTrabajador){
 
-    private int registrarTrabajador(Trabajador objTrabajador, View v) {
+        String horario = getHorario();
+        boolean isChecked = estaCheckeado(objTrabajador.getID(), context, horario);
+        if (isChecked) {
+            edt_rut.setText("");
+            //Toast.makeText(getActivity(), "Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " ya se ha checkeado", Toast.LENGTH_SHORT).show();
+            SuperToast superToast = new SuperToast(getActivity());
+            superToast.setDuration(SuperToast.Duration.LONG);
+            superToast.setText("Trabajador: " + objTrabajador.fnombre.toString() + " ya se ha checkeado");
+            superToast.setTextSize(40);
+            superToast.setIcon(SuperToast.Icon.Dark.EXIT, SuperToast.IconPosition.LEFT);
+            superToast.show();
+        } else {
+            int resultado = registrarTrabajador(objTrabajador, context);
+            if (resultado > 0) {
+
+                boolean resultado2 = registrarSincronizacionAsistencia(resultado, context);
+            }
+
+            edt_rut.setText("");
+            //Toast.makeText(getActivity(), "Trabajador: " + arrTrabajador.get(0).fnombre.toString() + " checkeado", Toast.LENGTH_SHORT).show();
+            SuperToast superToast = new SuperToast(getActivity());
+            superToast.setDuration(SuperToast.Duration.LONG);
+            superToast.setText("Trabajador: " + objTrabajador.fnombre.toString() + " checkeado");
+            superToast.setTextSize(40);
+            superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
+            superToast.show();
+            on_sincronizar_listener.sicronizarPeriodico();
+
+        }
+    }
+
+    private int registrarTrabajador(Trabajador objTrabajador, Context context) {
         int resultado = 0;
         Asistencia_trabajador objAsistenciaTrabajador = new Asistencia_trabajador();
         objAsistenciaTrabajador.fcliente_proveedor_ID = objTrabajador.fcliente_proveedor_ID;
         objAsistenciaTrabajador.ftrabajador_ID = objTrabajador.fID;
         objAsistenciaTrabajador.ffecha = Utils.getfechaHoraActualAlRevez();
         objAsistenciaTrabajador.fhorario = getHorario();
-        resultado = objAsistenciaTrabajador.ingresar(v.getContext());
+        resultado = objAsistenciaTrabajador.ingresar(context);
         return resultado;
     }
 
-    private boolean registrarSincronizacionAsistencia(int trabajador_ID, View v) {
+    private boolean registrarSincronizacionAsistencia(int trabajador_ID, Context context) {
 
         try {
-            ManagerProviderBD bd = new ManagerProviderBD(v.getContext());
+            ManagerProviderBD bd = new ManagerProviderBD(context);
             String query = "insert into sincronizacion_asistencia (registro_ID) values('" + trabajador_ID + "')";
             bd.open();
             bd.ejecutaSinRetorno(query);
@@ -328,7 +332,7 @@ public class TestFragment extends Fragment {
         return horario;
     }
 
-    private boolean estaCheckeado(int trabajador_ID, View v, String horario) {
+    private boolean estaCheckeado(int trabajador_ID, Context context, String horario) {
         String fecha_actual = Utils.getfechaHoraActualAlRevez();
 
         //determinar en que horario se encuentra
@@ -336,7 +340,7 @@ public class TestFragment extends Fragment {
 
         Toast.makeText(getActivity(), "Horario:" + horario, Toast.LENGTH_SHORT).show();
         String query = "SELECT * FROM asistencia_trabajador WHERE date('" + fecha_actual + "') LIKE date(fecha) and horario = '" + horario + "' and trabajador_ID = " + trabajador_ID;
-        ArrayList<Asistencia_trabajador> arrAsistenciaTrabajador = CtrlAsistencia_trabajador.getListado(query, v.getContext());
+        ArrayList<Asistencia_trabajador> arrAsistenciaTrabajador = CtrlAsistencia_trabajador.getListado(query,context);
         if (arrAsistenciaTrabajador.size() > 0) {
             return true;
         }

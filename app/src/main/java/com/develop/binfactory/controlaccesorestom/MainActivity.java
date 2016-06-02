@@ -12,9 +12,14 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.develop.binfactory.controlaccesorestom.clases.Cliente_producto_compuesto;
 import com.develop.binfactory.controlaccesorestom.clases.Sincronizador;
+import com.develop.binfactory.controlaccesorestom.clases.Trabajador;
+import com.develop.binfactory.controlaccesorestom.controladores.CtrlCliente_producto_compuesto;
 import com.develop.binfactory.controlaccesorestom.logica.soporte.Utils;
 import com.develop.binfactory.controlaccesorestom.logica.soporte.clsMantenimiento;
+
+import java.util.List;
 
 public class MainActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks,TestFragment.onSincronizarListener,Comunicator {
@@ -160,11 +165,13 @@ public class MainActivity extends FragmentActivity
     }
 
     @Override
-    public void seleccionExtras() {
+    public void seleccionExtras(int cliente_proveedor_ID, Trabajador objTrabajador) {
+        String query = "select * from cliente_producto_compuesto where cliente_proveedor_ID = "+cliente_proveedor_ID;
+        List<Cliente_producto_compuesto> arrClienteProdComp = CtrlCliente_producto_compuesto.getListado(query,this);
         String items[] = {"Bebida 1.5lts","Bebida 500cc","Agua 1.5lts","Agua 500cc", "Té","Café"};
         new MaterialDialog.Builder(this)
                 .title("SELECCIONE EXTRAS")
-                .items(items)
+                .items(arrClienteProdComp.toString())
                 .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
                     @Override
                     public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
