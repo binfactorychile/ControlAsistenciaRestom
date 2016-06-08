@@ -8,5 +8,5 @@ import com.develop.binfactory.controlaccesorestom.clases.Trabajador;
 public interface Comunicator {
 
     public void seleccionExtras(int cliente_proveedor_ID, Trabajador objTrabajador);
-
+    public boolean existeConectividad();
 }

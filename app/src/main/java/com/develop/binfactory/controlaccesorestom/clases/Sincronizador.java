@@ -25,6 +25,7 @@ import android.util.Log;
 
 
 import com.develop.binfactory.controlaccesorestom.controladores.CtrlAsistencia_trabajador;
+import com.develop.binfactory.controlaccesorestom.controladores.CtrlCliente_producto_compuesto;
 import com.develop.binfactory.controlaccesorestom.controladores.CtrlTrabajador;
 import com.develop.binfactory.controlaccesorestom.logica.soporte.ManagerProviderBD;
 import com.develop.binfactory.controlaccesorestom.logica.soporte.Utils;
@@ -37,7 +38,7 @@ public class Sincronizador {
     //private static final String NAMESPACE = "http://192.168.1.16/webservice_restaurant2/web/";
 
     //epinakeitor
-    private static final String NAMESPACE = "http://192.168.2.2/webservice_restaurant/web/";
+    private static final String NAMESPACE = "http://192.168.0.31/webservice_restaurant/web/";
 
     private static String URL = NAMESPACE + "service.php";
 
@@ -67,6 +68,7 @@ public class Sincronizador {
         PropertyInfo pi = new PropertyInfo();
         pi.setName("mac_address");
         pi.setValue(mac_address);
+        resultado = inicioPoblarBD("getClienteProductoCompuesto", pi);
         resultado = inicioPoblarBD("getTrabajadores", pi);
         if (resultado == "error") {
             Utils.escribeLog("Error en getTrabajadores, tablet->"
@@ -76,13 +78,17 @@ public class Sincronizador {
         return resultado;
     }
 
-    public String enviarAsistenciasTrabajador() {
+    public String enviarAsistenciasTrabajador(String []cliente_producto_compuesto_ids) {
         String resultado = "";
         ArrayList arrSincroIDs = getSincronizacionTrabajadoresIDs();
         if (arrSincroIDs.size() > 0) {
             PropertyInfo pi = new PropertyInfo();
-            pi.setName("mac_address");
-            pi.setValue(mac_address);
+//            pi.setName("mac_address");
+//            pi.setValue(mac_address);
+            gson = new Gson();
+            String arrCliente_producto_compuesto_idsJSON = gson.toJson(cliente_producto_compuesto_ids);
+            pi.setName("arrCliente_producto_compuesto_idsJSON");
+            pi.setValue(arrCliente_producto_compuesto_idsJSON);
             resultado = inicioPoblarBD("registrarAsistenciasTrabajador", pi);
             if (resultado == "error") {
                 Utils.escribeLog("Error en registrarAsistenciasTrabajador, tablet->"
@@ -171,7 +177,9 @@ public class Sincronizador {
             String strJSON = (String)envelope.getResponse();
 
             posicionError = "3";
-
+            if (funcionWS == "getClienteProductoCompuesto") {
+                getClienteProductoCompuesto(strJSON);
+            }
             if (funcionWS == "getTrabajadores") {
                 getTrabajadores(strJSON);
             }
@@ -283,6 +291,37 @@ public class Sincronizador {
         }
     }
 
+    private void getClienteProductoCompuesto(String listaJSON) {
+        // se crea el objeto que ayuda deserealizar la cadena JSON
+        gson = new Gson();
+
+        try {
+            if (!listaJSON.equals("vacio")) {
+
+                Type tipoArreglo = new TypeToken<ArrayList<Cliente_producto_compuestoJSON>>() {
+                }.getType();
+                ArrayList<Cliente_producto_compuestoJSON> arrClienteProdComp = new ArrayList();
+                arrClienteProdComp = gson.fromJson(listaJSON, tipoArreglo);
+                ArrayList arrSincronizacionID = new ArrayList();
+                for (Cliente_producto_compuestoJSON clienteProdComp : arrClienteProdComp) {
+                    if (!CtrlCliente_producto_compuesto.existe(clienteProdComp.getID(), context))
+                        CtrlCliente_producto_compuesto.ingresarJSON(clienteProdComp,context);
+                    else
+                        CtrlCliente_producto_compuesto.actualizarJSON(clienteProdComp,context);
+
+                    if (clienteProdComp.getSincronizacion_ID() > 0) {
+                        arrSincronizacionID.add(clienteProdComp.getSincronizacion_ID());
+                    }
+                }
+                if(arrSincronizacionID.size() > 0){
+                    eliminarSincronizacionIDClienteProductoCompuesto(arrSincronizacionID);
+                }
+            }
+        } catch (Exception e) {
+            Utils.escribeLog(e, "getTrabajadores");
+        }
+    }
+
     private void getTrabajadoresEliminados(String listaJSON) {
         // se crea el objeto que ayuda deserealizar la cadena JSON
         gson = new Gson();
@@ -324,6 +363,22 @@ public class Sincronizador {
         pi.setValue(arrJsonSincronizacionTablet);
 
         inicioPoblarBD("eliminarSincronizacionIDtrabajadores", pi);
+        //guardarEnWs("eliminarSincronizacionIDtrabajadores");
+    }
+    private void eliminarSincronizacionIDClienteProductoCompuesto(ArrayList arrSincronizacionTablet) {
+        request = new SoapObject(NAMESPACE,
+                "eliminarSincronizacionIDClienteProductoCompuesto");
+
+        PropertyInfo pi = new PropertyInfo();
+
+
+        String arrJsonSincronizacionTablet = "";
+
+        arrJsonSincronizacionTablet = gson.toJson(arrSincronizacionTablet);
+        pi.setName("arrSincronizacionTablet");
+        pi.setValue(arrJsonSincronizacionTablet);
+
+        inicioPoblarBD("eliminarSincronizacionIDClienteProductoCompuesto", pi);
         //guardarEnWs("eliminarSincronizacionIDtrabajadores");
     }
 

@@ -2,15 +2,19 @@ package com.develop.binfactory.controlaccesorestom;
 
 import android.app.ActionBar;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.develop.binfactory.controlaccesorestom.clases.Cliente_producto_compuesto;
 import com.develop.binfactory.controlaccesorestom.clases.Sincronizador;
@@ -19,7 +23,10 @@ import com.develop.binfactory.controlaccesorestom.controladores.CtrlCliente_prod
 import com.develop.binfactory.controlaccesorestom.logica.soporte.Utils;
 import com.develop.binfactory.controlaccesorestom.logica.soporte.clsMantenimiento;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks,TestFragment.onSincronizarListener,Comunicator {
@@ -30,10 +37,11 @@ public class MainActivity extends FragmentActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
 
-
+    TestFragment test;
     private ProgressDialog dialog;
     String resultado_sincro;//
     String mensaje_respuesta_sincro;
+    List<Integer> auxlista_ids;
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
@@ -61,6 +69,20 @@ public class MainActivity extends FragmentActivity
         dialog.setTitle("Sincronizando");
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setCancelable(false);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!prefs.getBoolean("firstTime", false)) {
+            // run your one time code
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("firstTime", true);
+            editor.commit();
+
+            CtrlCliente_producto_compuesto.ingresar(new Cliente_producto_compuesto(3,1,2000,"Bebida 500cc"),this);
+            CtrlCliente_producto_compuesto.ingresar(new Cliente_producto_compuesto(5,1,3000,"Cerveza 1lt"),this);
+            CtrlCliente_producto_compuesto.ingresar(new Cliente_producto_compuesto(6,1,2000,"Agua 500cc"),this);
+            CtrlCliente_producto_compuesto.ingresar(new Cliente_producto_compuesto(9,1,2000,"Té"),this);
+            CtrlCliente_producto_compuesto.ingresar(new Cliente_producto_compuesto(7,1,2000,"Café"),this);
+        }
     }
 
     @Override
@@ -75,13 +97,12 @@ public class MainActivity extends FragmentActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         SincronizadorNormal sincronormal = new SincronizadorNormal();
         if (position == 0) {
-            TestFragment test = TestFragment.newInstance(position+1);
+            test = TestFragment.newInstance(position+1);
             test.setOn_sincronizar_listener(this);
             test.setComunicator(this);
             fragmentManager.beginTransaction()
                     .replace(R.id.container, test)
                     .commit();
-
         } else if (position == 1) {
             clsMantenimiento mantenimiento = new clsMantenimiento(this);
             String resultado = mantenimiento.respaldarBD();
@@ -111,14 +132,14 @@ public class MainActivity extends FragmentActivity
         }
     }
 
-    private void realizarSincronizacion() {
+    private void realizarSincronizacion(String []cliente_producto_compuesto_ids) {
 //        int cantidad_registros = CtrlAsistencia_trabajador.getCantidadRegistrosSincronizacionAsistencia(this);
 //
 //        if (cantidad_registros >= 5) {
 //            SincronizadorPeriodico sincroPeriodico = new SincronizadorPeriodico();
 //            sincroPeriodico.execute("HOLI", "JKJK");
 //        }
-        SincronizadorPeriodico sincroPeriodico = new SincronizadorPeriodico();
+        SincronizadorPeriodico sincroPeriodico = new SincronizadorPeriodico(cliente_producto_compuesto_ids);
         sincroPeriodico.execute("HOLI", "JKJK");
 
     }
@@ -165,13 +186,18 @@ public class MainActivity extends FragmentActivity
     }
 
     @Override
-    public void seleccionExtras(int cliente_proveedor_ID, Trabajador objTrabajador) {
+    public void seleccionExtras(int cliente_proveedor_ID, final Trabajador objTrabajador) {
         String query = "select * from cliente_producto_compuesto where cliente_proveedor_ID = "+cliente_proveedor_ID;
         List<Cliente_producto_compuesto> arrClienteProdComp = CtrlCliente_producto_compuesto.getListado(query,this);
-        String items[] = {"Bebida 1.5lts","Bebida 500cc","Agua 1.5lts","Agua 500cc", "Té","Café"};
+        List<String> lista = new ArrayList<String>();
+        auxlista_ids = new ArrayList<Integer>();
+        for (Cliente_producto_compuesto auxClienteProdComp : arrClienteProdComp) {
+            lista.add(auxClienteProdComp.toString());
+            auxlista_ids.add((auxClienteProdComp.getProducto_compuesto_ID()));
+        }
         new MaterialDialog.Builder(this)
                 .title("SELECCIONE EXTRAS")
-                .items(arrClienteProdComp.toString())
+                .items(lista)
                 .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
                     @Override
                     public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
@@ -180,6 +206,11 @@ public class MainActivity extends FragmentActivity
                          * returning false here won't allow the newly selected check box to actually be selected.
                          * See the limited multi choice dialog example in the sample project for details.
                          **/
+                        String []cliente_producto_compuesto_ids = new String[which.length];
+                        for (int i=0;i<which.length;i++) {
+                            cliente_producto_compuesto_ids[i] = String.valueOf(auxlista_ids.get(which[i]));
+                        }
+                            test.registraAsistencia(dialog.getContext(), objTrabajador, cliente_producto_compuesto_ids);
                         return true;
                     }
                 })
@@ -188,8 +219,24 @@ public class MainActivity extends FragmentActivity
     }
 
     @Override
-    public void sicronizarPeriodico() {
-        realizarSincronizacion();
+    public void sicronizarPeriodico(String []cliente_producto_compuesto_ids) {
+        realizarSincronizacion(cliente_producto_compuesto_ids);
+    }
+
+    @Override
+    public boolean existeConectividad() {
+        SincronizadorConectividad sincronizadorConectividad = new SincronizadorConectividad();
+        try {
+            Integer resultado = sincronizadorConectividad.execute("HOLI", "JKJK").get();
+            if(resultado == 1)
+                return true;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
     private class SincronizadorNormal extends AsyncTask<String, Float, Integer> {
@@ -209,8 +256,8 @@ public class MainActivity extends FragmentActivity
                 if (sincro.existeConectividad(MainActivity.this)) {
                     resultado_sincro = "correcto";
                     if (origen.equals("1")) {
-                        mensaje_respuesta_sincro = sincro
-                                .enviarAsistenciasTrabajador();
+//                        mensaje_respuesta_sincro = sincro
+//                                .enviarAsistenciasTrabajador();
                         if (mensaje_respuesta_sincro.equals("ok")) {
 
                             dialog.dismiss();
@@ -281,7 +328,10 @@ public class MainActivity extends FragmentActivity
     }
 
     private class SincronizadorPeriodico extends AsyncTask<String, Float, Integer> {
-
+        private String []cliente_producto_compuesto_ids;
+        public SincronizadorPeriodico(String []cliente_producto_compuesto_ids) {
+            this.cliente_producto_compuesto_ids = cliente_producto_compuesto_ids;
+        }
 
         protected void onPreExecute() {
         }
@@ -295,7 +345,7 @@ public class MainActivity extends FragmentActivity
                     resultado_sincro = "correcto";
 
                     mensaje_respuesta_sincro = sincro
-                            .enviarAsistenciasTrabajador();
+                            .enviarAsistenciasTrabajador(cliente_producto_compuesto_ids);
                     if (mensaje_respuesta_sincro.equals("ok")) {
 
                         dialog.dismiss();
@@ -344,6 +394,70 @@ public class MainActivity extends FragmentActivity
                         "La tablet no se encuentra conectada a la misma red WIFI",
                         MainActivity.this);
             }
+
+        }
+    }
+
+    private class SincronizadorConectividad extends AsyncTask<String, Float, Integer> {
+        public String origen = "";
+
+        protected void onPreExecute() {
+            dialog.setProgress(0);
+            dialog.setMax(100);
+            dialog.show(); // Mostramos el di�logo antes de comenzar
+        }
+
+        protected Integer doInBackground(String[] arrString) {
+
+            Sincronizador sincro = new Sincronizador(MainActivity.this,
+                    "1");// ((VariablesSesion)getApplication()).acces_usuario_ID);
+            if (!sincro.mac_address.equalsIgnoreCase("no")) {
+                if (sincro.existeConectividad(MainActivity.this)) {
+                    resultado_sincro = "correcto";
+                    return 1;
+                }
+                else
+                    resultado_sincro = "error_conexion";
+            }
+            else
+                resultado_sincro = "error_no_conectada";
+            return 0;
+
+        }
+
+        protected void onProgressUpdate(Float[] valores) {
+            int p = Math.round(100 * valores[0]);
+            dialog.setProgress(p);
+        }
+
+        protected void onPostExecute(Integer bytes) {
+
+            dialog.dismiss();
+
+            if (resultado_sincro.equals("error_conexion")) {
+                Utils.muestraMensaje(
+                        "Error al sincronizar, no se pudo conectar con el servidor. Por favor intente mas tarde",
+                        MainActivity.this);
+            } else if (resultado_sincro.equals("error_envio")) {
+                Utils.muestraMensaje(mensaje_respuesta_sincro,
+                        MainActivity.this);
+            } else if (resultado_sincro.equals("error")) {
+                Utils.muestraMensaje(
+                        "Error al sincronizar, no se pudo conectar con el servidor. Por favor intente mas tarde",
+                        MainActivity.this);
+            } else if (resultado_sincro.equals("ok_admin")) {
+                Utils.muestraMensaje(
+                        "Ahora debe ingresar con un vendedor y sincronizar",
+                        MainActivity.this);
+            } else if (resultado_sincro.equals("error_no_conectada")) {
+                Utils.muestraMensaje(
+                        "La tablet no se encuentra conectada a la misma red WIFI",
+                        MainActivity.this);
+            }
+
+        }
+
+        private void sincronizarDatos(View v) {
 
         }
     }

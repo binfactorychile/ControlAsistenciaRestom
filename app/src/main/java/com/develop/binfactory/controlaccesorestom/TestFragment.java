@@ -35,7 +35,7 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class TestFragment extends Fragment {
-    private static final String ARG_SECTION_NUMBER = "section_number";
+    public static final String ARG_SECTION_NUMBER = "section_number";
 
 
     //FLAGS
@@ -65,7 +65,7 @@ public class TestFragment extends Fragment {
     private Comunicator c;
 
     public interface onSincronizarListener {
-        public void sicronizarPeriodico();
+        public void sicronizarPeriodico(String []cliente_producto_compuesto_ids);
     }
 
     public void setOn_sincronizar_listener(onSincronizarListener on_sincronizar_listener) {
@@ -233,21 +233,23 @@ public class TestFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                boolean validation = validarRut(edt_rut.getText().toString());
-                String query = "select * from trabajador where rut like '" + edt_rut.getText().toString() + "'";
-                ArrayList<Trabajador> arrTrabajador = CtrlTrabajador.getListado(query, v.getContext());
-                if (validation && (arrTrabajador.size() > 0)) {
-                    Trabajador objTrabajador = arrTrabajador.get(0);
-                    c.seleccionExtras(objTrabajador.fcliente_proveedor_ID,objTrabajador);
-                } else {
-                    //Toast.makeText(getActivity(), "Rut ingresado no existe", Toast.LENGTH_SHORT).show();
-                    edt_rut.setText("");
-                    SuperToast superToast = new SuperToast(getActivity());
-                    superToast.setDuration(SuperToast.Duration.LONG);
-                    superToast.setText("Rut ingresado no existe");
-                    superToast.setTextSize(40);
-                    superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
-                    superToast.show();
+                if (c.existeConectividad()) {
+                    boolean validation = validarRut(edt_rut.getText().toString());
+                    String query = "select * from trabajador where rut like '" + edt_rut.getText().toString() + "'";
+                    ArrayList<Trabajador> arrTrabajador = CtrlTrabajador.getListado(query, v.getContext());
+                    if (validation && (arrTrabajador.size() > 0)) {
+                        Trabajador objTrabajador = arrTrabajador.get(0);
+                        c.seleccionExtras(objTrabajador.fcliente_proveedor_ID,objTrabajador);
+                    } else {
+                        //Toast.makeText(getActivity(), "Rut ingresado no existe", Toast.LENGTH_SHORT).show();
+                        edt_rut.setText("");
+                        SuperToast superToast = new SuperToast(getActivity());
+                        superToast.setDuration(SuperToast.Duration.LONG);
+                        superToast.setText("Rut ingresado no existe");
+                        superToast.setTextSize(40);
+                        superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
+                        superToast.show();
+                    }
                 }
             }
         });
@@ -262,7 +264,7 @@ public class TestFragment extends Fragment {
         });
     }
 
-    private void registraAsistencia(Context context, Trabajador objTrabajador){
+    public void registraAsistencia(Context context, Trabajador objTrabajador, String []cliente_producto_compuesto_ids){
 
         String horario = getHorario();
         boolean isChecked = estaCheckeado(objTrabajador.getID(), context, horario);
@@ -290,7 +292,7 @@ public class TestFragment extends Fragment {
             superToast.setTextSize(40);
             superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
             superToast.show();
-            on_sincronizar_listener.sicronizarPeriodico();
+            on_sincronizar_listener.sicronizarPeriodico(cliente_producto_compuesto_ids);
 
         }
     }

@@ -36,6 +36,13 @@ public class Cliente_producto_compuesto {
     public Cliente_producto_compuesto() {
     }
 
+    public Cliente_producto_compuesto(int fproducto_compuesto_ID, int fcliente_proveedor_ID, int fprecio, String fnombre_producto) {
+        this.fproducto_compuesto_ID = fproducto_compuesto_ID;
+        this.fcliente_proveedor_ID = fcliente_proveedor_ID;
+        this.fprecio = fprecio;
+        this.fnombre_producto = fnombre_producto;
+    }
+
     public int getID() {
         return fID;
     }
