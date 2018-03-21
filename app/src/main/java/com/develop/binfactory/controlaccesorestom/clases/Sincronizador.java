@@ -38,7 +38,7 @@ public class Sincronizador {
     //private static final String NAMESPACE = "http://192.168.1.16/webservice_restaurant2/web/";
 
     //epinakeitor
-    private static final String NAMESPACE = "http://192.168.0.31/webservice_restaurant/web/";
+    private static final String NAMESPACE = "http://192.168.0.2/webservice_restaurant/web/";
 
     private static String URL = NAMESPACE + "service.php";
 
@@ -69,7 +69,7 @@ public class Sincronizador {
         pi.setName("mac_address");
         pi.setValue(mac_address);
         resultado = inicioPoblarBD("getClienteProductoCompuesto", pi);
-        resultado = inicioPoblarBD("getTrabajadores", pi);
+        //resultado = inicioPoblarBD("getTrabajadores", pi);
         if (resultado == "error") {
             Utils.escribeLog("Error en getTrabajadores, tablet->"
                     + mac_address);
@@ -132,6 +132,70 @@ public class Sincronizador {
                 + venta_ID);
         db.ejecutaSinRetorno("DELETE FROM venta WHERE ID=" + venta_ID);
         // db.close();
+    }
+
+    public String consultaTrabajador(String funcionWS, String rut, String horario, String []cliente_producto_compuesto_ids){
+        String posicionError = "1";
+        request = new SoapObject(NAMESPACE, funcionWS);
+
+        if (funcionWS == "registrarAsistenciaTrabajador") {
+            gson = new Gson();
+            String arrCliente_producto_compuesto_idsJSON = gson.toJson(cliente_producto_compuesto_ids);
+            PropertyInfo pi = new PropertyInfo();
+            pi.setName("arrCliente_producto_compuesto_idsJSON");
+            pi.setValue(arrCliente_producto_compuesto_idsJSON);
+            request.addProperty(pi);
+        }
+
+        PropertyInfo pi2 = new PropertyInfo();
+        pi2.setName("rutTrabajador");
+        pi2.setValue(rut);
+        request.addProperty(pi2);
+        PropertyInfo pi3 = new PropertyInfo();
+        pi3.setName("horario");
+        pi3.setValue(horario);
+        request.addProperty(pi3);
+
+        envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.encodingStyle = "utf-8";
+        envelope.enc = SoapSerializationEnvelope.ENC2003;
+        envelope.xsd = SoapEnvelope.XSD;
+        envelope.xsi = SoapEnvelope.XSI;
+        envelope.dotNet = false; // se asigna true para el caso de que el WS sea
+        // de dotNet
+        envelope.setAddAdornments(false);
+
+        envelope.setOutputSoapObject(request);
+        try {
+            if (transporte == null)
+                transporte = new HttpTransportSE(URL);
+
+            transporte
+                    .setXmlVersionTag("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+            // db.open();
+            transporte.call("http://tempuri.org/" + funcionWS, envelope);
+            //resultsRequestSOAP = (SoapPrimitive) envelope.getResponse();
+            posicionError = "2";
+            //String strJSON = resultsRequestSOAP.toString();
+            String strJSON = (String)envelope.getResponse();
+
+            return strJSON;
+
+        } catch (IOException e) {
+            Utils.escribeLog(e, "inicioPoblarBD->" + funcionWS + "."
+                    + posicionError);
+            return "error";
+        } catch (XmlPullParserException e) {
+            Utils.escribeLog(e, "inicioPoblarBD->" + funcionWS + "."
+                    + posicionError);
+            return "error";
+        } catch (Exception e) {
+            Utils.escribeLog(e, "inicioPoblarBD->" + funcionWS + "."
+                    + posicionError);
+
+            return "error";
+
+        }
     }
 
     private String inicioPoblarBD(String funcionWS, PropertyInfo pi) {
@@ -304,10 +368,15 @@ public class Sincronizador {
                 arrClienteProdComp = gson.fromJson(listaJSON, tipoArreglo);
                 ArrayList arrSincronizacionID = new ArrayList();
                 for (Cliente_producto_compuestoJSON clienteProdComp : arrClienteProdComp) {
-                    if (!CtrlCliente_producto_compuesto.existe(clienteProdComp.getID(), context))
-                        CtrlCliente_producto_compuesto.ingresarJSON(clienteProdComp,context);
-                    else
-                        CtrlCliente_producto_compuesto.actualizarJSON(clienteProdComp,context);
+
+                    if (clienteProdComp.f98==null || clienteProdComp.f98.equals("ingresar") || clienteProdComp.f98.equals("") ) {
+                        if (!CtrlCliente_producto_compuesto.existe(clienteProdComp.getID(), context))
+                            CtrlCliente_producto_compuesto.ingresarJSON(clienteProdComp,context);
+                        else
+                            CtrlCliente_producto_compuesto.actualizarJSON(clienteProdComp,context);
+                    } else if (clienteProdComp.f98.equals("eliminar")) {
+                        CtrlCliente_producto_compuesto.eliminar(clienteProdComp.getID(),context);
+                    }
 
                     if (clienteProdComp.getSincronizacion_ID() > 0) {
                         arrSincronizacionID.add(clienteProdComp.getSincronizacion_ID());

@@ -7,6 +7,10 @@ import com.develop.binfactory.controlaccesorestom.clases.Trabajador;
  */
 public interface Comunicator {
 
-    public void seleccionExtras(int cliente_proveedor_ID, Trabajador objTrabajador);
+    public void seleccionExtras(int cliente_proveedor_ID,String rut, String horario);
+
     public boolean existeConectividad();
+
+    public String consultaTrabajador(String rut_trabajador, String horario);
+
 }

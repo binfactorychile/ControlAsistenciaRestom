@@ -3,7 +3,6 @@ package com.develop.binfactory.controlaccesorestom;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 import com.develop.binfactory.controlaccesorestom.clases.Asistencia_trabajador;
 import com.develop.binfactory.controlaccesorestom.clases.Trabajador;
 import com.develop.binfactory.controlaccesorestom.controladores.CtrlAsistencia_trabajador;
-import com.develop.binfactory.controlaccesorestom.controladores.CtrlTrabajador;
 import com.develop.binfactory.controlaccesorestom.logica.soporte.ManagerProviderBD;
 import com.develop.binfactory.controlaccesorestom.logica.soporte.Utils;
 import com.github.johnpersano.supertoasts.SuperToast;
@@ -65,16 +63,15 @@ public class TestFragment extends Fragment {
     private Comunicator c;
 
     public interface onSincronizarListener {
-        public void sicronizarPeriodico(String []cliente_producto_compuesto_ids);
+        public void sicronizarPeriodico(String[] cliente_producto_compuesto_ids);
     }
 
     public void setOn_sincronizar_listener(onSincronizarListener on_sincronizar_listener) {
         this.on_sincronizar_listener = on_sincronizar_listener;
     }
 
-    public void setComunicator(Comunicator _c)
-    {
-        c= _c;
+    public void setComunicator(Comunicator _c) {
+        c = _c;
     }
 
     public static TestFragment newInstance(int sectionNumber) {
@@ -234,23 +231,43 @@ public class TestFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (c.existeConectividad()) {
-                    boolean validation = validarRut(edt_rut.getText().toString());
-                    String query = "select * from trabajador where rut like '" + edt_rut.getText().toString() + "'";
-                    ArrayList<Trabajador> arrTrabajador = CtrlTrabajador.getListado(query, v.getContext());
-                    if (validation && (arrTrabajador.size() > 0)) {
-                        Trabajador objTrabajador = arrTrabajador.get(0);
-                        c.seleccionExtras(objTrabajador.fcliente_proveedor_ID,objTrabajador);
-                    } else {
-                        //Toast.makeText(getActivity(), "Rut ingresado no existe", Toast.LENGTH_SHORT).show();
-                        edt_rut.setText("");
-                        SuperToast superToast = new SuperToast(getActivity());
-                        superToast.setDuration(SuperToast.Duration.LONG);
+                    //boolean validation = validarRut(edt_rut.getText().toString());
+
+                    SuperToast superToast = new SuperToast(getActivity());
+                    superToast.setDuration(SuperToast.Duration.LONG);
+                    superToast.setTextSize(40);
+                    superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
+                    //if (validation) {
+                    String horario = getHorario();
+                    String rut_trabajador = edt_rut.getText().toString();
+                    String resultado = c.consultaTrabajador(rut_trabajador, horario);
+                    if (resultado.equals("no_existe")) {
+
                         superToast.setText("Rut ingresado no existe");
+                        superToast.show();
+
+                    } else {
+                        if (resultado.equals("registrado")) {
+                            superToast.setText("Trabajador Checkeado");
+                            superToast.show();
+                        } else if (resultado.equals("error")) {
+                            superToast.setText("ERROR DE CONEXIÓN");
+                            superToast.show();
+                        } else {
+                            int cliente_proveedor = Integer.parseInt(resultado);
+                            c.seleccionExtras(cliente_proveedor, rut_trabajador, horario);
+                        }
+
+                    }
+                    /*} else {
+                        superToast.setDuration(SuperToast.Duration.LONG);
+                        superToast.setText("Rut ingresado no es valido");
                         superToast.setTextSize(40);
                         superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
                         superToast.show();
-                    }
+                    }*/
                 }
+                edt_rut.setText("");
             }
         });
 
@@ -264,7 +281,7 @@ public class TestFragment extends Fragment {
         });
     }
 
-    public void registraAsistencia(Context context, Trabajador objTrabajador, String []cliente_producto_compuesto_ids){
+    public void registraAsistencia(Context context, Trabajador objTrabajador, String[] cliente_producto_compuesto_ids) {
 
         String horario = getHorario();
         boolean isChecked = estaCheckeado(objTrabajador.getID(), context, horario);
@@ -342,7 +359,7 @@ public class TestFragment extends Fragment {
 
         Toast.makeText(getActivity(), "Horario:" + horario, Toast.LENGTH_SHORT).show();
         String query = "SELECT * FROM asistencia_trabajador WHERE date('" + fecha_actual + "') LIKE date(fecha) and horario = '" + horario + "' and trabajador_ID = " + trabajador_ID;
-        ArrayList<Asistencia_trabajador> arrAsistenciaTrabajador = CtrlAsistencia_trabajador.getListado(query,context);
+        ArrayList<Asistencia_trabajador> arrAsistenciaTrabajador = CtrlAsistencia_trabajador.getListado(query, context);
         if (arrAsistenciaTrabajador.size() > 0) {
             return true;
         }

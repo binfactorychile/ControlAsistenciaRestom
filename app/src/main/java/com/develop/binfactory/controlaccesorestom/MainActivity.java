@@ -11,11 +11,16 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.internal.MDButton;
 import com.develop.binfactory.controlaccesorestom.clases.Cliente_producto_compuesto;
 import com.develop.binfactory.controlaccesorestom.clases.Sincronizador;
 import com.develop.binfactory.controlaccesorestom.clases.Trabajador;
@@ -70,19 +75,19 @@ public class MainActivity extends FragmentActivity
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setCancelable(false);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (!prefs.getBoolean("firstTime", false)) {
-            // run your one time code
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("firstTime", true);
-            editor.commit();
-
-            CtrlCliente_producto_compuesto.ingresar(new Cliente_producto_compuesto(3,1,2000,"Bebida 500cc"),this);
-            CtrlCliente_producto_compuesto.ingresar(new Cliente_producto_compuesto(5,1,3000,"Cerveza 1lt"),this);
-            CtrlCliente_producto_compuesto.ingresar(new Cliente_producto_compuesto(6,1,2000,"Agua 500cc"),this);
-            CtrlCliente_producto_compuesto.ingresar(new Cliente_producto_compuesto(9,1,2000,"Té"),this);
-            CtrlCliente_producto_compuesto.ingresar(new Cliente_producto_compuesto(7,1,2000,"Café"),this);
-        }
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+//        if (!prefs.getBoolean("firstTime", false)) {
+//            // run your one time code
+//            SharedPreferences.Editor editor = prefs.edit();
+//            editor.putBoolean("firstTime", true);
+//            editor.commit();
+//
+//            CtrlCliente_producto_compuesto.ingresar(new Cliente_producto_compuesto(3,1,2000,"Bebida 500cc"),this);
+//            CtrlCliente_producto_compuesto.ingresar(new Cliente_producto_compuesto(5,1,3000,"Cerveza 1lt"),this);
+//            CtrlCliente_producto_compuesto.ingresar(new Cliente_producto_compuesto(6,1,2000,"Agua 500cc"),this);
+//            CtrlCliente_producto_compuesto.ingresar(new Cliente_producto_compuesto(9,1,2000,"Té"),this);
+//            CtrlCliente_producto_compuesto.ingresar(new Cliente_producto_compuesto(7,1,2000,"Café"),this);
+//        }
     }
 
     @Override
@@ -106,7 +111,7 @@ public class MainActivity extends FragmentActivity
         } else if (position == 1) {
             clsMantenimiento mantenimiento = new clsMantenimiento(this);
             String resultado = mantenimiento.respaldarBD();
-            sincronormal.origen = Integer.toString(position);
+            sincronormal.origen = Integer.toString(2);
             sincronormal.execute("HOLI", "JKJK");
 
         } else if (position == 2) {
@@ -186,7 +191,7 @@ public class MainActivity extends FragmentActivity
     }
 
     @Override
-    public void seleccionExtras(int cliente_proveedor_ID, final Trabajador objTrabajador) {
+    public void seleccionExtras(int cliente_proveedor_ID, final String rut, final String horario) {
         String query = "select * from cliente_producto_compuesto where cliente_proveedor_ID = "+cliente_proveedor_ID;
         List<Cliente_producto_compuesto> arrClienteProdComp = CtrlCliente_producto_compuesto.getListado(query,this);
         List<String> lista = new ArrayList<String>();
@@ -195,27 +200,40 @@ public class MainActivity extends FragmentActivity
             lista.add(auxClienteProdComp.toString());
             auxlista_ids.add((auxClienteProdComp.getProducto_compuesto_ID()));
         }
-        new MaterialDialog.Builder(this)
-                .title("SELECCIONE EXTRAS")
-                .items(lista)
-                .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
-                    @Override
-                    public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
-                        /**
-                         * If you use alwaysCallMultiChoiceCallback(), which is discussed below,
-                         * returning false here won't allow the newly selected check box to actually be selected.
-                         * See the limited multi choice dialog example in the sample project for details.
-                         **/
-                        String []cliente_producto_compuesto_ids = new String[which.length];
-                        for (int i=0;i<which.length;i++) {
-                            cliente_producto_compuesto_ids[i] = String.valueOf(auxlista_ids.get(which[i]));
+
+        if (arrClienteProdComp != null && arrClienteProdComp.size() > 0) {
+            MaterialDialog mDialog = new MaterialDialog.Builder(this)
+                    .title("SELECCIONE EXTRAS")
+                    .items(lista)
+                    .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
+                        @Override
+                        public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+                            /**
+                             * If you use alwaysCallMultiChoiceCallback(), which is discussed below,
+                             * returning false here won't allow the newly selected check box to actually be selected.
+                             * See the limited multi choice dialog example in the sample project for details.
+                             **/
+                            String[] cliente_producto_compuesto_ids = new String[which.length];
+                            for (int i = 0; i < which.length; i++) {
+                                cliente_producto_compuesto_ids[i] = String.valueOf(auxlista_ids.get(which[i]));
+                            }
+                            registrarAsistenciaTrabajador(rut, horario, cliente_producto_compuesto_ids);
+                            //test.registraAsistencia(dialog.getContext(), objTrabajador, cliente_producto_compuesto_ids);
+                            return true;
                         }
-                            test.registraAsistencia(dialog.getContext(), objTrabajador, cliente_producto_compuesto_ids);
-                        return true;
-                    }
-                })
-                .positiveText("LISTO")
-                .show();
+                    })
+                    .positiveColorRes(R.color.colorCheckBoxExtras)
+                    .widgetColorRes(R.color.colorCheckBoxExtras)
+                    .positiveText("ACEPTAR")
+                    .show();
+            MDButton btnPositive = mDialog.getActionButton(DialogAction.POSITIVE);
+            btnPositive.setHeight(60);
+            btnPositive.setWidth(150);
+            btnPositive.setTextSize(25);
+            btnPositive.setTextColor(getResources().getColor(R.color.white));
+            btnPositive.setBackgroundColor(getResources().getColor(R.color.colorCheckBoxExtras));
+        }
+
     }
 
     @Override
@@ -226,9 +244,10 @@ public class MainActivity extends FragmentActivity
     @Override
     public boolean existeConectividad() {
         SincronizadorConectividad sincronizadorConectividad = new SincronizadorConectividad();
+        sincronizadorConectividad.origen = "conectividad";
         try {
-            Integer resultado = sincronizadorConectividad.execute("HOLI", "JKJK").get();
-            if(resultado == 1)
+            String resultado = sincronizadorConectividad.execute("HOLI", "JKJK").get();
+            if(resultado.equals("1"))
                 return true;
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -237,6 +256,40 @@ public class MainActivity extends FragmentActivity
         }
 
         return false;
+    }
+
+    @Override
+    public String consultaTrabajador(String rut_trabajador, String horario) {
+        SincronizadorConectividad sincronizadorConectividad = new SincronizadorConectividad();
+        sincronizadorConectividad.origen = "consulta";
+        sincronizadorConectividad.rut = rut_trabajador;
+        sincronizadorConectividad.horario = horario;
+        String resultado ="error";
+        try {
+            resultado = sincronizadorConectividad.execute("HOLI", "JKJK").get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return resultado;
+    }
+
+    public String registrarAsistenciaTrabajador(String rut, String horario, String[] cliente_producto_compuesto_ids) {
+        SincronizadorConectividad sincronizadorConectividad = new SincronizadorConectividad();
+        sincronizadorConectividad.origen = "registrar";
+        sincronizadorConectividad.rut = rut;
+        sincronizadorConectividad.horario = horario;
+        sincronizadorConectividad.cliente_producto_compuesto_ids = cliente_producto_compuesto_ids;
+        String resultado ="error";
+        try {
+            resultado = sincronizadorConectividad.execute("HOLI", "JKJK").get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return resultado;
     }
 
     private class SincronizadorNormal extends AsyncTask<String, Float, Integer> {
@@ -398,30 +451,51 @@ public class MainActivity extends FragmentActivity
         }
     }
 
-    private class SincronizadorConectividad extends AsyncTask<String, Float, Integer> {
+    private class SincronizadorConectividad extends AsyncTask<String, Float, String> {
         public String origen = "";
-
+        public String rut= "";
+        public String horario = "";
+        public String []cliente_producto_compuesto_ids;
         protected void onPreExecute() {
             dialog.setProgress(0);
             dialog.setMax(100);
             dialog.show(); // Mostramos el di�logo antes de comenzar
         }
 
-        protected Integer doInBackground(String[] arrString) {
+        protected String doInBackground(String[] arrString) {
 
             Sincronizador sincro = new Sincronizador(MainActivity.this,
                     "1");// ((VariablesSesion)getApplication()).acces_usuario_ID);
-            if (!sincro.mac_address.equalsIgnoreCase("no")) {
-                if (sincro.existeConectividad(MainActivity.this)) {
-                    resultado_sincro = "correcto";
-                    return 1;
+            if (origen.equals("conectividad")) {
+                if (!sincro.mac_address.equalsIgnoreCase("no")) {
+                    if (sincro.existeConectividad(MainActivity.this)) {
+                        resultado_sincro = "correcto";
+                        dialog.dismiss();
+                        return "1";
+                    }
+                    else{
+                        dialog.dismiss();
+                        resultado_sincro = "error_conexion";
+                    }
                 }
-                else
-                    resultado_sincro = "error_conexion";
+                else{
+                    dialog.dismiss();
+                    resultado_sincro = "error_no_conectada";
+                }
+
             }
-            else
-                resultado_sincro = "error_no_conectada";
-            return 0;
+            if (origen.equals("consulta")) {
+                resultado_sincro = sincro.consultaTrabajador("consultaTrabajador",rut,horario,null);
+                dialog.dismiss();
+                return resultado_sincro;
+            }
+            if (origen.equals("registrar")) {
+                resultado_sincro = sincro.consultaTrabajador("registrarAsistenciaTrabajador",rut,horario,cliente_producto_compuesto_ids);
+                dialog.dismiss();
+                return resultado_sincro;
+            }
+            dialog.dismiss();
+            return "0";
 
         }
 

@@ -79,7 +79,7 @@
                         <Button
                             android:id="@+id/btn_uno"
                             android:layout_gravity="fill"
-                            android:background="#FF7700"
+                            android:background="@drawable/boton_ql"
                             android:paddingBottom="30dp"
                             android:paddingLeft="50dp"
                             android:paddingRight="50dp"
@@ -91,7 +91,7 @@
                         <Button
                             android:id="@+id/btn_dos"
                             android:layout_gravity="fill"
-                            android:background="#FF7700"
+                            android:background="@drawable/boton_ql"
                             android:paddingBottom="30dp"
                             android:paddingLeft="50dp"
                             android:paddingRight="50dp"
@@ -103,7 +103,7 @@
                         <Button
                             android:id="@+id/btn_tres"
                             android:layout_gravity="fill"
-                            android:background="#FF7700"
+                            android:background="@drawable/boton_ql"
                             android:paddingBottom="30dp"
                             android:paddingLeft="50dp"
                             android:paddingRight="50dp"
@@ -115,7 +115,7 @@
                         <ImageButton
                             android:id="@+id/btn_delete"
                             android:layout_gravity="fill"
-                            android:background="#FF7700"
+                            android:background="@drawable/boton_ql"
                             android:paddingBottom="30dp"
                             android:paddingLeft="50dp"
                             android:paddingRight="50dp"
@@ -127,7 +127,7 @@
                         <Button
                             android:id="@+id/btn_cuatro"
                             android:layout_gravity="fill"
-                            android:background="#FF7700"
+                            android:background="@drawable/boton_ql"
                             android:paddingBottom="30dp"
                             android:paddingLeft="50dp"
                             android:paddingRight="50dp"
@@ -139,7 +139,7 @@
                         <Button
                             android:id="@+id/btn_cinco"
                             android:layout_gravity="fill"
-                            android:background="#FF7700"
+                            android:background="@drawable/boton_ql"
                             android:paddingBottom="30dp"
                             android:paddingLeft="50dp"
                             android:paddingRight="50dp"
@@ -151,7 +151,7 @@
                         <Button
                             android:id="@+id/btn_seis"
                             android:layout_gravity="fill"
-                            android:background="#FF7700"
+                            android:background="@drawable/boton_ql"
                             android:paddingBottom="30dp"
                             android:paddingLeft="50dp"
                             android:paddingRight="50dp"
@@ -163,7 +163,7 @@
                         <Button
                             android:id="@+id/btn_guion"
                             android:layout_gravity="fill"
-                            android:background="#FF7700"
+                            android:background="@drawable/boton_ql"
                             android:paddingBottom="30dp"
                             android:paddingLeft="50dp"
                             android:paddingRight="50dp"
@@ -176,7 +176,7 @@
                         <Button
                             android:id="@+id/btn_siete"
                             android:layout_gravity="fill"
-                            android:background="#FF7700"
+                            android:background="@drawable/boton_ql"
                             android:paddingBottom="30dp"
                             android:paddingLeft="50dp"
                             android:paddingRight="50dp"
@@ -188,7 +188,7 @@
                         <Button
                             android:id="@+id/btn_ocho"
                             android:layout_gravity="fill"
-                            android:background="#FF7700"
+                            android:background="@drawable/boton_ql"
                             android:paddingBottom="30dp"
                             android:paddingLeft="50dp"
                             android:paddingRight="50dp"
@@ -200,7 +200,7 @@
                         <Button
                             android:id="@+id/btn_nueve"
                             android:layout_gravity="fill"
-                            android:background="#FF7700"
+                            android:background="@drawable/boton_ql"
                             android:paddingBottom="30dp"
                             android:paddingLeft="50dp"
                             android:paddingRight="50dp"
@@ -213,7 +213,7 @@
                             android:id="@+id/btn_ok"
                             android:layout_gravity="fill"
                             android:layout_rowSpan="2"
-                            android:background="#FF7700"
+                            android:background="@drawable/boton_ql"
                             android:paddingBottom="30dp"
                             android:paddingLeft="50dp"
                             android:paddingRight="50dp"
@@ -226,7 +226,7 @@
                             android:id="@+id/btn_k"
                             android:layout_columnSpan="2"
                             android:layout_gravity="fill"
-                            android:background="#FF7700"
+                            android:background="@drawable/boton_ql"
                             android:paddingBottom="30dp"
                             android:paddingLeft="50dp"
                             android:paddingRight="50dp"
@@ -238,7 +238,7 @@
                         <Button
                             android:id="@+id/btn_cero"
                             android:layout_gravity="fill"
-                            android:background="#FF7700"
+                            android:background="@drawable/boton_ql"
                             android:paddingBottom="30dp"
                             android:paddingLeft="50dp"
                             android:paddingRight="50dp"
